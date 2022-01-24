@@ -11,6 +11,8 @@
 |
 */
 
-Route::prefix('system')->group(function() {
-    Route::get('/', 'SystemController@index');
+use Modules\System\Http\Controllers\Admin\DashboardController;
+
+Route::prefix('admin')->group(function() {
+    Route::get('/', [DashboardController::class, 'index']);
 });
