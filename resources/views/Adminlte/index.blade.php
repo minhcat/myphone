@@ -157,7 +157,6 @@ desired effect
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Product</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Category</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>User</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Invoice</span>
             <span class="pull-right-container">
@@ -174,6 +173,7 @@ desired effect
         <li><a href="#"><i class="fa fa-link"></i> <span>Address</span></a></li>
 
         <li class="header">SYSTEM</li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>User</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Config</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Theme</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Log</span></a></li>
