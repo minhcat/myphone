@@ -176,8 +176,6 @@ desired effect
         <li><a href="#"><i class="fa fa-link"></i> <span>User</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Config</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Theme</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Log</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Translation</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
