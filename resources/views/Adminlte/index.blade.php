@@ -133,13 +133,34 @@ desired effect
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">CONTENT</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Product</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Category</span></a></li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Product</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Product</a></li>
+            <li><a href="#">Attribute</a></li>
+            <li><a href="#">Brand</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Category</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Category</a></li>
+            <li><a href="#">Tag</a></li>
+          </ul>
+        </li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Invoice</span>
             <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="#">Cart</a></li>
@@ -147,11 +168,44 @@ desired effect
             <li><a href="#">Invoice</a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Promotion</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Address</span></a></li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Promotion</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Promotion</a></li>
+            <li><a href="#">Rebation</a></li>
+            <li><a href="#">Voucher</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>Address</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">City</a></li>
+            <li><a href="#">County</a></li>
+            <li><a href="#">Ward</a></li>
+          </ul>
+        </li>
 
         <li class="header">SYSTEM</li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>User</span></a></li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>User</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">User</a></li>
+            <li><a href="#">Role</a></li>
+            <li><a href="#">Permission</a></li>
+          </ul>
+        </li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Config</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Theme</span></a></li>
       </ul>
