@@ -134,7 +134,7 @@ desired effect
         <li class="header">CONTENT</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Product</span>
+          <a href="#"><i class="fa fa-laptop"></i> <span>Product</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -146,7 +146,7 @@ desired effect
           </ul>
         </li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Category</span>
+          <a href="#"><i class="fa fa-copy"></i> <span>Category</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -157,7 +157,7 @@ desired effect
           </ul>
         </li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Invoice</span>
+          <a href="#"><i class="fa fa-shopping-cart"></i> <span>Invoice</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -169,7 +169,7 @@ desired effect
           </ul>
         </li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Promotion</span>
+          <a href="#"><i class="fa fa-bullhorn"></i> <span>Promotion</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -181,7 +181,7 @@ desired effect
           </ul>
         </li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Address</span>
+          <a href="#"><i class="fa fa-map-marker"></i> <span>Address</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -195,7 +195,7 @@ desired effect
 
         <li class="header">SYSTEM</li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>User</span>
+          <a href="#"><i class="fa fa-user"></i> <span>User</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -206,8 +206,8 @@ desired effect
             <li><a href="#">Permission</a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Config</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Theme</span></a></li>
+        <li><a href="#"><i class="fa fa-gear"></i> <span>Config</span></a></li>
+        <li><a href="#"><i class="fa fa-paper-plane"></i> <span>Theme</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -347,6 +347,14 @@ desired effect
 <script src="Adminlte/vendor/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="Adminlte/vendor/jquery-ui/jquery-ui.min.js"></script>
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.7 -->
+<script src="Adminlte/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Morris.js charts -->
+<script src="Adminlte/vendor/raphael/raphael.min.js"></script>
+<script src="Adminlte/vendor/morris.js/morris.min.js"></script>
 <!-- Sparkline -->
 <script src="Adminlte/vendor/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- jvectormap -->
@@ -354,10 +362,10 @@ desired effect
 <script src="Adminlte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 <!-- jQuery Knob Chart -->
 <script src="Adminlte/vendor/jquery-knob/dist/jquery.knob.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="Adminlte/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="Adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!-- Slimscroll -->
+<script src="Adminlte/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- daterangepicker -->
 <script src="Adminlte/vendor/moment/min/moment.min.js"></script>
 <script src="Adminlte/vendor/bootstrap-daterangepicker/daterangepicker.js"></script>
