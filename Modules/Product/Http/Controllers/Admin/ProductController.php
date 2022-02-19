@@ -1,15 +1,25 @@
 <?php
 
-namespace Modules\Product\Http\Controllers;
+namespace Modules\Product\Http\Controllers\Admin;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Product\Interfaces\Services\ProductServiceInterface;
 
 class ProductController extends Controller
 {
+    protected $productService;
+
+    public function __construct(ProductServiceInterface $productService)
+    {
+        $this->productService = $productService;
+    }
+
     public function index()
     {
+        $products = $this->productService->all();
+        dd($products);
         return view('product::index');
     }
 
