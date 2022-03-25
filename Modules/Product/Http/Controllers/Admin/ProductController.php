@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = $this->productService->all();
-        return view('Adminlte.modules.product.index');
+        return view('product::product.index');
     }
 
     public function create()

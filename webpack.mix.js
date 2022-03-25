@@ -15,3 +15,6 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);
+
+mix.sass('resources/css/grid.scss', 'public/css');
+mix.sass('resources/css/text.scss', 'public/css');
