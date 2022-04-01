@@ -3,6 +3,10 @@
 <link rel="stylesheet" href="{{ asset('Adminlte/vendor/font-awesome/css/font-awesome.min.css') }}">
 <!-- Ionicons -->
 <link rel="stylesheet" href="{{ asset('Adminlte/vendor/Ionicons/css/ionicons.min.css') }}">
+<!-- bootstrap datepicker -->
+<link rel="stylesheet" href="{{ asset('Adminlte/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+<!-- Select2 -->
+<link rel="stylesheet" href="{{ asset('Adminlte/vendor/select2/dist/css/select2.min.css') }}">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{ asset('Adminlte/dist/css/AdminLTE.min.css') }}">
 <!-- AdminLTE Skins. We have chosen the skin-blue for this starter

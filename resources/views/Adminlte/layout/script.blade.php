@@ -9,6 +9,8 @@
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ asset('Adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('Adminlte/vendor/select2/dist/js/select2.full.min.js') }}"></script>
 <!-- Morris.js charts -->
 <script src="{{ asset('Adminlte/vendor/raphael/raphael.min.js') }}"></script>
 <script src="{{ asset('Adminlte/vendor/morris.js/morris.min.js') }}"></script>
