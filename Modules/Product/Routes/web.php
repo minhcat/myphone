@@ -16,5 +16,6 @@ use Modules\Product\Http\Controllers\Admin\ProductController;
 Route::prefix('admin')->group(function() {
     Route::prefix('products')->group(function() {
         Route::get('/', [ProductController::class, 'index']);
+        Route::get('/create', [ProductController::class, 'create'])->name('product.create');
     });
 });
