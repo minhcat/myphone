@@ -17,9 +17,10 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->unsignedTinyInteger('status');
-            $table->text('description');
-            $table->unsignedInteger('brand_id');
+            $table->text('description')->default('');
+            $table->boolean('is_lock')->default(true);
+            $table->boolean('is_show')->default(false);
+            $table->unsignedInteger('brand_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
