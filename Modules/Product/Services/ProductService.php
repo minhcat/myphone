@@ -5,6 +5,7 @@ namespace Modules\Product\Services;
 use Modules\Product\Interfaces\Services\ProductServiceInterface;
 use Modules\Product\Interfaces\Repositories\ProductRepositoryInterface;
 use Illuminate\Http\Request;
+use App\Helpers\Common;
 
 class ProductService implements ProductServiceInterface
 {
@@ -32,7 +33,9 @@ class ProductService implements ProductServiceInterface
 
     public function create(Request $request)
     {
-        return $this->productRepository->create($request->all());
+        $data = $this->generateData($request->all());
+
+        return $this->productRepository->create($data);
     }
 
     public function update($id, Request $request)
@@ -43,5 +46,28 @@ class ProductService implements ProductServiceInterface
     public function delete($id)
     {
         return $this->productRepository->delete($id);
+    }
+
+    /**
+     * Make data array to create or update from request data
+     * 
+     * @param array $request
+     * @return array $data
+     */
+    private function generateData(array $request) : array
+    {
+        $data = $request;
+
+        // generate slug
+        if (isset($request['name']) && is_string($request['name'])) {
+            $data['slug'] = Common::convertNameToSlug($request['name']);
+        }
+
+        // check null description
+        if (is_null($request['description'])) {
+            $data['description'] = '';
+        }
+
+        return $data;
     }
 }
