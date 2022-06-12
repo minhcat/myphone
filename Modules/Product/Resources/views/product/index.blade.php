@@ -8,7 +8,7 @@
     <div class="box box-primary">
       <div class="box-header with-border px-3 py-5">
         <h3 class="box-title text-5">List</h3>
-        <a class="btn btn-primary pull-right" href="{{ route('product.create') }}">New Product</a>
+        <a class="btn btn-primary pull-right" href="{{ route('products.create') }}">New Product</a>
       </div>
       <div class="box-body p-5">
         <div class="box box-info collapsed-box">

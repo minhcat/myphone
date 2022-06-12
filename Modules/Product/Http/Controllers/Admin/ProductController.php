@@ -35,7 +35,7 @@ class ProductController extends Controller
     {
         $this->productService->create($request);
 
-        return redirect('product.index');
+        return redirect()->route('products.index');
     }
 
     public function show($id)
