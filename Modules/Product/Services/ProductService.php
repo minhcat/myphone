@@ -40,7 +40,9 @@ class ProductService implements ProductServiceInterface
 
     public function update($id, Request $request)
     {
-        return $this->productRepository->update($id, $request->all());
+        $data = $this->generateData($request->all());
+
+        return $this->productRepository->update($id, $data);
     }
 
     public function delete($id)

@@ -55,7 +55,7 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->productService->update($request);
+        $this->productService->update($id, $request);
 
         return redirect()->route('products.index');
     }

@@ -29,11 +29,11 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function update($id, array $data)
     {
-        return Product::whereId($id)->update($data);
+        return Product::find($id)->update($data);
     }
 
     public function delete($id)
     {
-        return Product::whereId($id)->delete();
+        return Product::find($id)->delete();
     }
 }
