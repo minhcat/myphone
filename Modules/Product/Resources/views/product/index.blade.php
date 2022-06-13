@@ -118,7 +118,7 @@
                     <td>
                         <button class="btn btn-success" type="button"><i class="fa fa-eye"></i></button>
                         <button class="btn btn-warning" type="button"><i class="fa fa-lock"></i></button>
-                        <button class="btn btn-primary" type="button"><i class="fa fa-edit"></i></button>
+                        <a href="{{ route('products.edit', 1) }}" class="btn btn-primary" type="button"><i class="fa fa-edit"></i></a>
                         <button class="btn btn-danger" type="button"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>

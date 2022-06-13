@@ -46,6 +46,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = $this->productService->find($id);
+
         return view('product::product.form', [
             'form'      => 'update',
             'product'   => $product,
@@ -54,7 +55,9 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $this->productService->update($request);
+
+        return redirect()->route('products.index');
     }
 
     public function destroy($id)
