@@ -2,13 +2,12 @@
 
 namespace Modules\Product\Http\Controllers\Admin;
 
-use Illuminate\Contracts\Support\Renderable;
+use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Modules\Product\Interfaces\Services\ProductServiceInterface;
 use Modules\Product\Http\Requests\ProductRequest;
 
-class ProductController extends Controller
+class ProductController extends BaseController
 {
     protected $productService;
 
@@ -21,7 +20,7 @@ class ProductController extends Controller
     {
         $products = $this->productService->all();
 
-        return view('product::product.index');
+        return view('product::product.index', compact('products'));
     }
 
     public function create()

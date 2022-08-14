@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->text('description')->default('');
+            $table->text('description');
             $table->boolean('is_lock')->default(true);
             $table->boolean('is_show')->default(false);
             $table->unsignedInteger('brand_id')->nullable();
