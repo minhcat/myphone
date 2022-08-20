@@ -17,10 +17,12 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->unsignedInteger('price');
             $table->text('description');
+            $table->unsignedInteger('brand_id')->nullable();
             $table->boolean('is_lock')->default(true);
             $table->boolean('is_show')->default(false);
-            $table->unsignedInteger('brand_id')->nullable();
+            $table->unsignedInteger('created_by');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -9,7 +9,9 @@ class ProductRepository implements ProductRepositoryInterface
 {
     public function all()
     {
-        return Product::all();
+        $products = Product::all();
+        $products = $this->convertDataRaw($products, 20);
+        return $products;
     }
 
     public function find($id)
@@ -35,5 +37,13 @@ class ProductRepository implements ProductRepositoryInterface
     public function delete($id)
     {
         return Product::find($id)->delete();
+    }
+
+    private function convertDataRaw($products, int $descriptionLength = 10, string $formatDate = 'H:i:s d-m-Y')
+    {
+        foreach ($products as &$product) {
+            $product->description = substr($product->description, 0, $descriptionLength) . '...';
+        }
+        return $products;
     }
 }

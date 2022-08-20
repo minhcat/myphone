@@ -105,15 +105,16 @@
                     <th>status</th>
                     <th style="width:183px">action</th>
                 </tr>
+                @foreach ($products as $key => $product)
                 <tr>
-                    <td>1</td>
-                    <td>Iphone 13 promax</td>
+                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $product->name }}</td>
                     <td>Apple</td>
                     <td>Smartphone, modern</td>
-                    <td>Lorem ipsum dolor sit amet consectetur.</td>
+                    <td>{{ $product->description }}</td>
                     <td>Minh Cat</td>
-                    <td>01/04/2022</td>
-                    <td>01/04/2022</td>
+                    <td>{{ $product->created_at->format($formatDate) }}</td>
+                    <td>{{ $product->updated_at->format($formatDate) }}</td>
                     <td><span class="badge bg-green">active</span></td>
                     <td>
                         <button class="btn btn-success" type="button"><i class="fa fa-eye"></i></button>
@@ -122,74 +123,7 @@
                         <button class="btn btn-danger" type="button"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Iphone 13 promax</td>
-                    <td>Apple</td>
-                    <td>Smartphone, modern</td>
-                    <td>Lorem ipsum dolor sit amet consectetur.</td>
-                    <td>Minh Cat</td>
-                    <td>01/04/2022</td>
-                    <td>01/04/2022</td>
-                    <td><span class="badge bg-red">disable</span></td>
-                    <td>
-                        <button class="btn btn-success" type="button"><i class="fa fa-eye"></i></button>
-                        <button class="btn btn-warning" type="button"><i class="fa fa-lock"></i></button>
-                        <button class="btn btn-primary" type="button"><i class="fa fa-edit"></i></button>
-                        <button class="btn btn-danger" type="button"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Iphone 13 promax</td>
-                    <td>Apple</td>
-                    <td>Smartphone, modern</td>
-                    <td>Lorem ipsum dolor sit amet consectetur.</td>
-                    <td>Minh Cat</td>
-                    <td>01/04/2022</td>
-                    <td>01/04/2022</td>
-                    <td><span class="badge bg-orange">hide</span></td>
-                    <td>
-                        <button class="btn btn-success" type="button"><i class="fa fa-eye"></i></button>
-                        <button class="btn btn-warning" type="button"><i class="fa fa-lock"></i></button>
-                        <button class="btn btn-primary" type="button"><i class="fa fa-edit"></i></button>
-                        <button class="btn btn-danger" type="button"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Iphone 13 promax</td>
-                    <td>Apple</td>
-                    <td>Smartphone, modern</td>
-                    <td>Lorem ipsum dolor sit amet consectetur.</td>
-                    <td>Minh Cat</td>
-                    <td>01/04/2022</td>
-                    <td>01/04/2022</td>
-                    <td><span class="badge bg-green">active</span></td>
-                    <td>
-                        <button class="btn btn-success" type="button"><i class="fa fa-eye"></i></button>
-                        <button class="btn btn-warning" type="button"><i class="fa fa-lock"></i></button>
-                        <button class="btn btn-primary" type="button"><i class="fa fa-edit"></i></button>
-                        <button class="btn btn-danger" type="button"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Iphone 13 promax</td>
-                    <td>Apple</td>
-                    <td>Smartphone, modern</td>
-                    <td>Lorem ipsum dolor sit amet consectetur.</td>
-                    <td>Minh Cat</td>
-                    <td>01/04/2022</td>
-                    <td>01/04/2022</td>
-                    <td><span class="badge bg-aqua">pending</span></td>
-                    <td>
-                        <button class="btn btn-success" type="button"><i class="fa fa-eye"></i></button>
-                        <button class="btn btn-warning" type="button"><i class="fa fa-lock"></i></button>
-                        <button class="btn btn-primary" type="button"><i class="fa fa-edit"></i></button>
-                        <button class="btn btn-danger" type="button"><i class="fa fa-trash"></i></button>
-                    </td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
         <ul class="pagination pagination-sm mb-0 pull-right">

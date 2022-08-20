@@ -19,8 +19,9 @@ class ProductController extends BaseController
     public function index()
     {
         $products = $this->productService->all();
+        $formatDate = 'H:i:s d-m-Y';
 
-        return view('product::product.index', compact('products'));
+        return view('product::product.index', compact('products', 'formatDate'));
     }
 
     public function create()
