@@ -115,7 +115,19 @@
                     <td>Minh Cat</td>
                     <td>{{ $product->created_at->format($formatDate) }}</td>
                     <td>{{ $product->updated_at->format($formatDate) }}</td>
-                    <td><span class="badge bg-green">active</span></td>
+                    <td>
+                        @if ($product->is_lock)
+                            <span class="badge bg-orange">lock</span>
+                        @else
+                            <span class="badge bg-blue">active</span>
+                        @endif
+
+                        @if ($product->is_show)
+                            <span class="badge bg-green">show</span>
+                        @else
+                            <span class="badge bg-red">hide</span>
+                        @endif
+                    </td>
                     <td>
                         <button class="btn btn-success" type="button"><i class="fa fa-eye"></i></button>
                         <button class="btn btn-warning" type="button"><i class="fa fa-lock"></i></button>
