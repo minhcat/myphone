@@ -26,8 +26,9 @@ class ProductController extends BaseController
 
     public function create()
     {
-        return view('product::product.form', [
+        return view('product::product.create', [
             'form'  => 'create',
+            'product'   => null,
         ]);
     }
 
@@ -47,7 +48,7 @@ class ProductController extends BaseController
     {
         $product = $this->productService->find($id);
 
-        return view('product::product.form', [
+        return view('product::product.update', [
             'form'      => 'update',
             'product'   => $product,
         ]);

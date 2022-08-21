@@ -70,6 +70,10 @@ class ProductService implements ProductServiceInterface
             $data['description'] = '';
         }
 
+        if (!isset($request['created_by'])) {
+            $data['created_by'] = 1;
+        }
+
         return $data;
     }
 }

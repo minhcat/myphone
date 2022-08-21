@@ -45,7 +45,9 @@ desired effect
     <section class="content-header">
       <h1>
         @yield('title-page')
+        @yield('small-info')
       </h1>
+      @yield('breakcumb')
     </section>
 
     <!-- Main content -->

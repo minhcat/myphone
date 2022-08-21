@@ -2,6 +2,18 @@
 
 @section('title-page', 'Products')
 
+@section('small-info')
+<small>List of products</small>
+@endsection
+
+@section('breakcumb')
+<ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="#">Product</a></li>
+    <li class="active">Products</li>
+</ol>
+@endsection
+
 @section('content')
 <div class="row">
   <section class="col-lg-12">

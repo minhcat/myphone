@@ -15,6 +15,9 @@ jvm.SVGCanvasElement.prototype.setSize = function(width, height){
 };
 
 jvm.SVGCanvasElement.prototype.applyTransformParams = function(scale, transX, transY) {
+  if (isNaN(scale) || isNaN(transX) || isNaN(transY)) {
+    return;
+  }
   this.scale = scale;
   this.transX = transX;
   this.transY = transY;

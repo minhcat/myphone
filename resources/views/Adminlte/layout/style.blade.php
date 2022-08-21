@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="{{ asset('Adminlte/vendor/Ionicons/css/ionicons.min.css') }}">
 <!-- bootstrap datepicker -->
 <link rel="stylesheet" href="{{ asset('Adminlte/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+<!-- bootstrap range datepicker -->
+<link rel="stylesheet" href="{{ asset('Adminlte/vendor/bootstrap-daterangepicker/daterangepicker.css') }}">
 <!-- Select2 -->
 <link rel="stylesheet" href="{{ asset('Adminlte/vendor/select2/dist/css/select2.min.css') }}">
 <!-- Theme style -->
