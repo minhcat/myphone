@@ -52,6 +52,16 @@ desired effect
 
     <!-- Main content -->
     <section class="content container-fluid">
+      <!-- Alert -->
+      <div class="mp-alert">
+        @if (session('success'))
+        <div class="callout callout-success">
+          <h4>Success</h4>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente impedit, ipsam repudiandae dicta quos consequuntur?</p>
+        </div>
+        @endif
+      </div>
+      <!-- /.alert -->
       @yield('content')
     </section>
     <!-- /.content -->

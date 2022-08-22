@@ -35,6 +35,7 @@ class ProductController extends BaseController
     public function store(ProductRequest $request)
     {
         $this->productService->create($request);
+        session()->flash('success', 'create new product successfully');
 
         return redirect()->route('products.index');
     }
@@ -57,6 +58,7 @@ class ProductController extends BaseController
     public function update(Request $request, $id)
     {
         $this->productService->update($id, $request);
+        session()->flash('success', 'edit product successfully'); // todo: add name or id to message
 
         return redirect()->route('products.index');
     }
