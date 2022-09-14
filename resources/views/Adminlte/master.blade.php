@@ -55,9 +55,10 @@ desired effect
       <!-- Alert -->
       <div class="mp-alert">
         @if (session('success'))
-        <div class="callout callout-success">
+        <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
           <h4>Success</h4>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente impedit, ipsam repudiandae dicta quos consequuntur?</p>
+          <p>{{ session('success') }}</p>
         </div>
         @endif
       </div>

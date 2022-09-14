@@ -35,7 +35,7 @@ class ProductController extends BaseController
     public function store(ProductRequest $request)
     {
         $this->productService->create($request);
-        session()->flash('success', 'create new product successfully');
+        session()->flash('success', 'create new product successfully'); // todo: use locale translate languages
 
         return redirect()->route('products.index');
     }
