@@ -110,7 +110,7 @@
                     <th>name</th>
                     <th>brand</th>
                     <th>category</th>
-                    <th>description</th>
+                    <!-- <th>description</th> -->
                     <th>created by</th>
                     <th>created at</th>
                     <th>updated at</th>
@@ -123,7 +123,7 @@
                     <td>{{ $product->name }}</td>
                     <td>Apple</td>
                     <td>Smartphone, modern</td>
-                    <td>{{ $product->description }}</td>
+                    <!-- <td>{{ $product->description }}</td> -->
                     <td>Minh Cat</td>
                     <td>{{ $product->created_at->format($formatDate) }}</td>
                     <td>{{ $product->updated_at->format($formatDate) }}</td>
@@ -143,8 +143,8 @@
                     <td>
                         <button class="btn btn-success" type="button"><i class="fa fa-eye"></i></button>
                         <button class="btn btn-warning" type="button"><i class="fa fa-lock"></i></button>
-                        <a href="{{ route('products.edit', 1) }}" class="btn btn-primary" type="button"><i class="fa fa-edit"></i></a>
-                        <button class="btn btn-danger" type="button"><i class="fa fa-trash"></i></button>
+                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary" type="button"><i class="fa fa-edit"></i></a>
+                        <button class="btn btn-danger btn-delete" type="button" data-toggle="modal" data-target="#modal-delete" data-url="{{ route('products.destroy', $product->id) }}"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
                 @endforeach
@@ -157,6 +157,31 @@
             <li><a href="#">3</a></li>
             <li><a href="#">>></a></li>
         </ul>
+
+        <!-- Modal -->
+        <!-- Modal delete -->
+        <div class="modal modal-default fade" id="modal-delete">
+            <div class="modal-dialog">
+                <form action="" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Delete Product</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you want to delete this product</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Delete</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
       </div>
     </div>
   </section>
@@ -177,6 +202,12 @@
         })
         $('#endDateInput').datepicker({
             autoclose: true
+        })
+
+        //Modal
+        $('.btn-delete').click(function() {
+            let url = $(this).data('url')
+            $('#modal-delete form').attr('action', url)
         })
     })
 </script>

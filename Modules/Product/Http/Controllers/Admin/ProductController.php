@@ -65,6 +65,9 @@ class ProductController extends BaseController
 
     public function destroy($id)
     {
-        //
+        $this->productService->delete($id);
+        session()->flash('success', 'delete product successfully'); // todo: add name or id to message
+
+        return redirect()->route('products.index');
     }
 }
