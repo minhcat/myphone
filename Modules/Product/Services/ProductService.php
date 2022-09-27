@@ -66,7 +66,7 @@ class ProductService implements ProductServiceInterface
         }
 
         // check null description
-        if (is_null($request['description'])) {
+        if (!isset($request['description']) || is_null($request['description'])) {
             $data['description'] = '';
         }
 

@@ -2,6 +2,14 @@
 
 @section('title-page', 'Products')
 
+@section('style')
+<style>
+    .action .btn {
+        width: 3.8rem;
+    }
+</style>
+@endsection
+
 @section('small-info')
 <small>List of products</small>
 @endsection
@@ -140,11 +148,43 @@
                             <span class="badge bg-red">hide</span>
                         @endif
                     </td>
-                    <td>
-                        <button class="btn btn-success" type="button"><i class="fa fa-eye"></i></button>
-                        <button class="btn btn-warning" type="button"><i class="fa fa-lock"></i></button>
-                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary" type="button"><i class="fa fa-edit"></i></a>
-                        <button class="btn btn-danger btn-delete" type="button" data-toggle="modal" data-target="#modal-delete" data-url="{{ route('products.destroy', $product->id) }}"><i class="fa fa-trash"></i></button>
+                    <td class="action">
+                        <button
+                            class="btn btn-success btn-show"
+                            type="button"
+                            data-toggle="modal"
+                            data-target="#modal-show"
+                            data-value="{{ $product->is_show ? '0' : '1' }}"
+                            data-url="{{ route('products.update', $product->id) }}">
+                            @if ($product->is_show)
+                                <i class="fa fa-eye-slash"></i>
+                            @else
+                                <i class="fa fa-eye"></i>
+                            @endif
+                        </button>
+                        <button
+                            class="btn btn-warning"
+                            type="button">
+                            @if ($product->is_lock)
+                                <i class="fa fa-unlock"></i>
+                            @else
+                                <i class="fa fa-lock"></i>
+                            @endif
+                        </button>
+                        <a
+                            href="{{ route('products.edit', $product->id) }}"
+                            class="btn btn-primary"
+                            type="button">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <button
+                            class="btn btn-danger btn-delete"
+                            type="button"
+                            data-toggle="modal"
+                            data-target="#modal-delete"
+                            data-url="{{ route('products.destroy', $product->id) }}">
+                            <i class="fa fa-trash"></i>
+                        </button>
                     </td>
                 </tr>
                 @endforeach
@@ -159,7 +199,7 @@
         </ul>
 
         <!-- Modal -->
-        <!-- Modal delete -->
+        <!-- Modal Delete -->
         <div class="modal modal-default fade" id="modal-delete">
             <div class="modal-dialog">
                 <form action="" method="POST">
@@ -182,6 +222,34 @@
                 </form>
             </div>
         </div>
+        <!-- /Modal Delete -->
+
+        <!-- Modal Show/Hide -->
+        <div class="modal modal-default fade" id="modal-show">
+            <div class="modal-dialog">
+                <form action="" method="POST">
+                    @method('PUT')
+                    @csrf
+                    <input type="hidden" name="is_show" id="show">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Show Product</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you want to continue</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default">Cancel</button>
+                            <button type="submit" class="btn btn-primary">OK</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /Modal Show/Hide -->
+        <!-- /Modal -->
       </div>
     </div>
   </section>
@@ -208,6 +276,20 @@
         $('.btn-delete').click(function() {
             let url = $(this).data('url')
             $('#modal-delete form').attr('action', url)
+        })
+        $('.btn-show').click(function() {
+            // set url
+            let url = $(this).data('url')
+            $('#modal-show form').attr('action', url)
+
+            // set data is_show
+            let value = $(this).data('value')
+            $('#modal-show input#show').val(value)
+            if (value == '0') {
+                $('#modal-show h4.modal-title').text('Hide Product')
+            } else {
+                $('#modal-show h4.modal-title').text('Show Product')
+            }
         })
     })
 </script>
