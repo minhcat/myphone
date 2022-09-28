@@ -194,13 +194,7 @@
                 @endforeach
             </tbody>
         </table>
-        <ul class="pagination pagination-sm mb-0 pull-right">
-            <li><a href="#"><<</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">>></a></li>
-        </ul>
+        @include('Adminlte.layout.paginate', ['paginator' => $products])
 
         <!-- Modal -->
         <!-- Modal Delete -->

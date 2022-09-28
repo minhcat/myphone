@@ -9,7 +9,7 @@ class ProductRepository implements ProductRepositoryInterface
 {
     public function all()
     {
-        $products = Product::all();
+        $products = Product::paginate(5);   // todo: set config to value paginate
         $products = $this->convertDataRaw($products, 20);
         return $products;
     }
