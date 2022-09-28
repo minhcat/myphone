@@ -49,37 +49,59 @@
                     <div class="col-xs-3">
                         <div class="form-group">
                             <label for="brandInput">Brand</label>
-                            <input type="text" class="form-control" id="brandInput">
+                            <select name="brandInput" id="brandInput" class="form-control select2-nosearch" style="width: 100%;">
+                                <option value="2" selected="selected">All</option>
+                                <option value="0">Apple</option>
+                                <option value="1">Samsung</option>
+                                <option value="1">Xiaomi</option>
+                                <option value="1">Oppo</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-xs-3">
                         <div class="form-group">
                             <label for="categoryInput">Category</label>
-                            <input type="text" class="form-control" id="categoryInput">
+                            <select name="categoryInput" id="categoryInput" class="form-control select2-nosearch" style="width: 100%;">
+                                <option value="2" selected="selected">All</option>
+                                <option value="0">Big</option>
+                                <option value="0">Small</option>
+                                <option value="0">New</option>
+                                <option value="1">Red</option>
+                                <option value="1">Blue</option>
+                                <option value="1">Black</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-xs-3">
                         <div class="form-group">
-                            <label for="descriptionInput">Description</label>
-                            <input type="text" class="form-control" id="descriptionInput">
+                            <label for="showInput">Show</label>
+                            <select name="lockInput" id="lockInput" class="form-control select2-nosearch" style="width: 100%;">
+                                <option value="2" selected="selected">All</option>
+                                <option value="0">Show</option>
+                                <option value="1">Hide</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-xs-3">
                         <div class="form-group">
-                            <label for="statusInput">Status</label>
-                            <select name="statusInput" id="statusInput" class="form-control select2-nosearch" style="width: 100%;">
-                                <option value="0" selected="selected">pending</option>
-                                <option value="1">show</option>
-                                <option value="2">hide</option>
-                                <option value="3">lock</option>
-                                <option value="4">delete</option>
+                            <label for="lockInput">Lock</label>
+                            <select name="lockInput" id="lockInput" class="form-control select2-nosearch" style="width: 100%;">
+                                <option value="0" selected="selected">All</option>
+                                <option value="1">Lock</option>
+                                <option value="2">Unlock</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-xs-3">
                         <div class="form-group">
                             <label for="createdByInput">Created by</label>
-                            <input type="text" class="form-control" id="createdByInput">
+                            <select name="createdByInput" id="createdByInput" class="form-control select2-nosearch" style="width: 100%;">
+                                <option value="0" selected="selected">All</option>
+                                <option value="1">Minh Cat</option>
+                                <option value="2">Long Geo</option>
+                                <option value="2">K'Gom</option>
+                                <option value="2">Pham Doan</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-xs-3">
