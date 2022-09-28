@@ -163,8 +163,12 @@
                             @endif
                         </button>
                         <button
-                            class="btn btn-warning"
-                            type="button">
+                            class="btn btn-warning btn-lock"
+                            type="button"
+                            data-toggle="modal"
+                            data-target="#modal-lock"
+                            data-value="{{ $product->is_lock ? '0' : '1' }}"
+                            data-url="{{ route('products.update', $product->id) }}">
                             @if ($product->is_lock)
                                 <i class="fa fa-unlock"></i>
                             @else
@@ -249,6 +253,32 @@
             </div>
         </div>
         <!-- /Modal Show/Hide -->
+
+        <!-- Modal Lock/Unlock -->
+        <div class="modal modal-default fade" id="modal-lock">
+            <div class="modal-dialog">
+                <form action="" method="POST">
+                    @method('PUT')
+                    @csrf
+                    <input type="hidden" name="is_lock" id="lock">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Lock Product</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you want to continue</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default">Cancel</button>
+                            <button type="submit" class="btn btn-primary">OK</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /Modal Lock/Unlock -->
         <!-- /Modal -->
       </div>
     </div>
@@ -289,6 +319,20 @@
                 $('#modal-show h4.modal-title').text('Hide Product')
             } else {
                 $('#modal-show h4.modal-title').text('Show Product')
+            }
+        })
+        $('.btn-lock').click(function() {
+            // set url
+            let url = $(this).data('url')
+            $('#modal-lock form').attr('action', url)
+
+            // set data is_lock
+            let value = $(this).data('value')
+            $('#modal-lock input#lock').val(value)
+            if (value == '0') {
+                $('#modal-lock h4.modal-title').text('Unlock Product')
+            } else {
+                $('#modal-lock h4.modal-title').text('Lock Product')
             }
         })
     })
