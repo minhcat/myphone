@@ -2,8 +2,10 @@
     <ul class="pagination pagination-sm mb-0 pull-right">
         {{-- Previous Page Link --}}
 		@if ($paginator->currentPage() == 1)
+			<li class="disabled"><span><<</span></li>
 			<li class="disabled"><span><</span></li>
 		@else
+			<li><a href="{{ $paginator->url(1) }}"><<</a></li>
 			<li><a href="{{ $paginator->previousPageUrl() }}" rel="prev"><</a></li>
 		@endif
 
@@ -26,9 +28,11 @@
 
         {{-- Next Page Link --}}
 		@if ($paginator->hasMorePages())
-			<li><a href="{{ $paginator->nextPageUrl() }}" rel="next">></a></li>
+			<li><a href="{{ $paginator->nextPageUrl() }}">></a></li>
+			<li><a href="{{ $paginator->url($paginator->lastPage()) }}" rel="next">>></a></li>
 		@else
 			<li class="disabled"><span>></span></li>
+			<li class="disabled"><span>>></span></li>
 		@endif
     </ul>
 @endif

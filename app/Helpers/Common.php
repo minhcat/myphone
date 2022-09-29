@@ -32,4 +32,15 @@ class Common
         $endText = substr($result, -1);
         return $endText === '.' ? $result : $result . '.';
     }
+
+    /**
+     * Genarate format date
+     *
+     * @param void
+     * @return string formatDate
+     */
+    public static function formatDate() : string
+    {
+        return 'H:i:s d-m-Y';
+    }
 }

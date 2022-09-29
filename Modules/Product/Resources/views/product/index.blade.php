@@ -155,8 +155,8 @@
                     <td>Smartphone, modern</td>
                     <!-- <td>{{ $product->description }}</td> -->
                     <td>Minh Cat</td>
-                    <td>{{ $product->created_at->format($formatDate) }}</td>
-                    <td>{{ $product->updated_at->format($formatDate) }}</td>
+                    <td>{{ $product->created_at->format(Helper::formatDate()) }}</td>
+                    <td>{{ $product->updated_at->format(Helper::formatDate()) }}</td>
                     <td>
                         @if ($product->is_lock)
                             <span class="badge bg-orange">lock</span>
