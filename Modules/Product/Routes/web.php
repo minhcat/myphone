@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
 use Modules\Product\Http\Controllers\Admin\ProductController;
 
 Route::prefix('admin')->group(function() {

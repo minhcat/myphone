@@ -69,4 +69,11 @@ class ProductController extends BaseController
 
         return redirect()->route('products.index');
     }
+
+    public function search(Request $request)
+    {
+        $products = $this->productService->search($request);
+
+        return view('product::product.index', compact('products'));
+    }
 }

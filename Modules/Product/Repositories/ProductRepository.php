@@ -5,8 +5,18 @@ namespace Modules\Product\Repositories;
 use Modules\Product\Interfaces\Repositories\ProductRepositoryInterface;
 use Modules\Product\Entities\Product;
 
-class ProductRepository implements ProductRepositoryInterface
+class ProductRepository extends Responsitory implements ProductRepositoryInterface
 {
+    protected $attributes = ['name', 'brand_id', 'is_show', 'is_lock', 'created_by', 'created_at'];
+    protected $filters = [
+        'name'          => 'like',
+        'brand_id'      => '=',
+        'is_show'       => '=',
+        'is_lock'       => '=',
+        'created_by'    => '=',
+        'created_at'    => 'date',
+    ];
+
     public function all()
     {
         $products = Product::paginate(5);   // todo: set config to value paginate
@@ -21,7 +31,9 @@ class ProductRepository implements ProductRepositoryInterface
 
     public function search(array $data)
     {
-        return Product::where($data)->get();
+        $data = $this->refresh($data);
+
+        return $this->filter(Product::query(), $data)->paginate(5);
     }
 
     public function create(array $data)
@@ -39,7 +51,7 @@ class ProductRepository implements ProductRepositoryInterface
         return Product::find($id)->delete();
     }
 
-    private function convertDataRaw($products, int $descriptionLength = 10, string $formatDate = 'H:i:s d-m-Y')
+    private function convertDataRaw($products, int $descriptionLength = 10)
     {
         foreach ($products as &$product) {
             $product->description = substr($product->description, 0, $descriptionLength) . '...';

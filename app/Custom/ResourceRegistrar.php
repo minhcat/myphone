@@ -11,7 +11,7 @@ class ResourceRegistrar extends OriginalRegistrar
      *
      * @var array
      */
-    protected $resourceDefaults = ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy', 'data'];
+    protected $resourceDefaults = ['index', 'create', 'store', 'edit', 'update', 'destroy', 'data'];
 
 
     /**
@@ -29,6 +29,6 @@ class ResourceRegistrar extends OriginalRegistrar
 
         $action = $this->getResourceAction($name, $controller, 'search', $options);
 
-        return $this->router->post($uri, $action);
+        return $this->router->get($uri, $action);
     }
 }

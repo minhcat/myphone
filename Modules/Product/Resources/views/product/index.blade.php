@@ -32,6 +32,7 @@
       </div>
       <div class="box-body p-5">
         <div class="box box-info collapsed-box">
+            <form action="{{ route('products.search') }}" method="GET">
             <div class="box-header with-border">
                 <h4 class="box-title text-4">Search</h4>
                 <div class="box-tools pull-right">
@@ -43,64 +44,65 @@
                     <div class="col-xs-3">
                         <div class="form-group">
                             <label for="nameInput">Name</label>
-                            <input type="text" class="form-control" id="nameInput">
+                            <input type="text" class="form-control" id="nameInput" name="name" value="{{ request('name') }}">
                         </div>
                     </div>
                     <div class="col-xs-3">
                         <div class="form-group">
                             <label for="brandInput">Brand</label>
-                            <select name="brandInput" id="brandInput" class="form-control select2-nosearch" style="width: 100%;">
-                                <option value="2" selected="selected">All</option>
+                            <select name="brand_id" id="brandInput" class="form-control select2-nosearch" style="width: 100%;">
+                                <!-- Todo: foreach check old input -->
+                                <option value="" selected="selected">All</option>
                                 <option value="0">Apple</option>
                                 <option value="1">Samsung</option>
-                                <option value="1">Xiaomi</option>
-                                <option value="1">Oppo</option>
+                                <option value="2">Xiaomi</option>
+                                <option value="3">Oppo</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-xs-3">
                         <div class="form-group">
                             <label for="categoryInput">Category</label>
-                            <select name="categoryInput" id="categoryInput" class="form-control select2-nosearch" style="width: 100%;">
-                                <option value="2" selected="selected">All</option>
+                            <select name="category_id" id="categoryInput" class="form-control select2-nosearch" style="width: 100%;">
+                                <option value="" selected="selected">All</option>
                                 <option value="0">Big</option>
-                                <option value="0">Small</option>
-                                <option value="0">New</option>
-                                <option value="1">Red</option>
-                                <option value="1">Blue</option>
-                                <option value="1">Black</option>
+                                <option value="1">Small</option>
+                                <option value="2">New</option>
+                                <option value="3">Red</option>
+                                <option value="4">Blue</option>
+                                <option value="5">Black</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-xs-3">
                         <div class="form-group">
                             <label for="showInput">Show</label>
-                            <select name="lockInput" id="lockInput" class="form-control select2-nosearch" style="width: 100%;">
-                                <option value="2" selected="selected">All</option>
-                                <option value="0">Show</option>
-                                <option value="1">Hide</option>
+                            <select name="is_show" id="lockInput" class="form-control select2-nosearch" style="width: 100%;">
+                                <option value="" selected="selected">All</option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-xs-3">
                         <div class="form-group">
                             <label for="lockInput">Lock</label>
-                            <select name="lockInput" id="lockInput" class="form-control select2-nosearch" style="width: 100%;">
-                                <option value="0" selected="selected">All</option>
+                            <select name="is_lock" id="lockInput" class="form-control select2-nosearch" style="width: 100%;">
+                                <option value="" selected="selected">All</option>
+                                <option value="0">Active</option>
                                 <option value="1">Lock</option>
-                                <option value="2">Unlock</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-xs-3">
                         <div class="form-group">
                             <label for="createdByInput">Created by</label>
-                            <select name="createdByInput" id="createdByInput" class="form-control select2-nosearch" style="width: 100%;">
-                                <option value="0" selected="selected">All</option>
-                                <option value="1">Minh Cat</option>
-                                <option value="2">Long Geo</option>
+                            <select name="created_by" id="createdByInput" class="form-control select2-nosearch" style="width: 100%;">
+                                <option value="" selected="selected">All</option>
+                                <option value="0">Minh Cat</option>
+                                <option value="1">Long Geo</option>
                                 <option value="2">K'Gom</option>
-                                <option value="2">Pham Doan</option>
+                                <option value="3">Pham Doan</option>
                             </select>
                         </div>
                     </div>
@@ -111,7 +113,8 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control" id="startDateInput">
+                                <!-- Todo: old input to start date -->
+                                <input type="text" class="form-control" id="startDateInput" name="created_at[]">
                             </div>
                         </div>
                     </div>
@@ -122,7 +125,8 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="text" class="form-control" id="endDateInput">
+                                <!-- Todo: old input to end date -->
+                                <input type="text" class="form-control" id="endDateInput" name="created_at[]">
                             </div>
                         </div>
                     </div>
@@ -132,6 +136,7 @@
                     </div>
                 </div>
             </div>
+            </form>
         </div>
         <table class="table table-bordered">
             <tbody>
