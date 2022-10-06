@@ -12,10 +12,10 @@
   <div class="form-group">
     <label for="brandInput">Brand</label>
     <select class="form-control select2" name="brand_id" id="brandSelect" style="width: 100%;">
-      <option value="1" selected>Apple</option>
-      <option value="1">Samsung</option>
-      <option value="1">Xiaomi</option>
-      <option value="1">Realme</option>
+      <option value="1">Apple</option>
+      <option value="2">Samsung</option>
+      <option value="3">Xiaomi</option>
+      <option value="4">Realme</option>
     </select>
   </div>
   <div class="form-group">
@@ -31,6 +31,6 @@
 </div>
 <div class="box-footer">
   <button class="btn btn-info"><i class="fa fa-save"></i> {{ $type == 'create' ? 'Create' : 'Edit' }}</button>
-  <button class="btn btn-default" type="button"><i class="fa fa-arrow-left"></i> Back</button>
+  <a href="{{ route('products.index') }}" class="btn btn-default"><i class="fa fa-arrow-left"></i> Back</a>
 </div>
 </form>

@@ -4,7 +4,7 @@ namespace Modules\Product\Repositories;
 
 use Illuminate\Support\Arr;
 
-abstract class Responsitory
+abstract class FilterRepository
 {
     protected $attributes = [];
     protected $filters = [];
@@ -13,9 +13,12 @@ abstract class Responsitory
     {
         $data = Arr::only($data, $this->attributes);
         foreach ($data as $attribute => &$value) {
-            if ($this->filters[$attribute] == 'date' && is_array($value) && count($value) == 2 && !in_array(null, $value)) {
-                $value[0] = date('Y-m-d', strtotime($value[0]));
-                $value[1] = date('Y-m-d', strtotime($value[1]));
+            if ($this->filters[$attribute] == 'date'
+            && is_array($value)
+            && count($value) == 2
+            && !in_array(null, $value)) {
+                $value[0] = date('Y-m-d', strtotime($value[0])).' 00:00:00';
+                $value[1] = date('Y-m-d', strtotime($value[1])).' 23:59:59';
             }
         }
         return Arr::whereNotNull($data);
@@ -26,7 +29,7 @@ abstract class Responsitory
         foreach ($this->attributes as $attribute) {
             if (isset($data[$attribute])) {
                 if ($this->filters[$attribute] == 'date') {
-                    if (!in_array(null, $data['created_at'])) {
+                    if (!in_array(null, $data[$attribute])) {
                         $query->whereBetween($attribute, $data[$attribute]);
                     }
                 } else if ($this->filters[$attribute] == 'like') {

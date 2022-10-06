@@ -6,14 +6,20 @@ use Modules\Product\Interfaces\Services\ProductServiceInterface;
 use Modules\Product\Interfaces\Repositories\ProductRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Helpers\Common;
+use Modules\Product\Interfaces\Repositories\ProductLogRepositoryInterface;
 
 class ProductService implements ProductServiceInterface
 {
     protected $productRepository;
+    protected $productLogRepository;
 
-    public function __construct(ProductRepositoryInterface $productRepository)
+    public function __construct(
+        ProductRepositoryInterface $productRepository,
+        ProductLogRepositoryInterface $productLogRepository
+    )
     {
         $this->productRepository = $productRepository;
+        $this->productLogRepository = $productLogRepository;
     }
 
     public function all()
@@ -24,6 +30,17 @@ class ProductService implements ProductServiceInterface
     public function find($id)
     {
         return $this->productRepository->find($id);
+    }
+
+    public function getLogs($id, Request $request = null)
+    {
+        if ($request == null) {
+            return $this->productLogRepository->getBySubjectId($id);
+        } else {
+            $data = $request->all();
+            $data['product_id'] = $id;
+            return $this->productLogRepository->getWithConditions($data);
+        }
     }
 
     public function search(Request $request)

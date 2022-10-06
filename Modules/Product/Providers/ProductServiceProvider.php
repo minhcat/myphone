@@ -2,12 +2,16 @@
 
 namespace Modules\Product\Providers;
 
+use App\Observers\ModelObserver;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Support\Facades\Config;
+use Modules\Product\Entities\Product;
 use Modules\Product\Interfaces\Services\ProductServiceInterface;
+use Modules\Product\Interfaces\Repositories\ProductLogRepositoryInterface;
 use Modules\Product\Interfaces\Repositories\ProductRepositoryInterface;
 use Modules\Product\Services\ProductService;
 use Modules\Product\Repositories\ProductRepository;
+use Modules\Product\Repositories\ProductLogRepository;
 
 class ProductServiceProvider extends ServiceProvider
 {
@@ -31,6 +35,7 @@ class ProductServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
+        $this->registerObservers();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
     }
 
@@ -49,6 +54,10 @@ class ProductServiceProvider extends ServiceProvider
         $this->app->bind(
             ProductRepositoryInterface::class,
             ProductRepository::class,
+        );
+        $this->app->bind(
+            ProductLogRepositoryInterface::class,
+            ProductLogRepository::class,
         );
     }
 
@@ -102,6 +111,16 @@ class ProductServiceProvider extends ServiceProvider
     }
 
     /**
+     * Register observer
+     *
+     * @return void
+     */
+    public function registerObservers()
+    {
+        Product::observe(ModelObserver::class);
+    }
+
+    /**
      * Get the services provided by the provider.
      *
      * @return array
@@ -114,7 +133,7 @@ class ProductServiceProvider extends ServiceProvider
     private function getPublishableViewPaths(): array
     {
         $paths = [];
-        foreach (\Config::get('view.paths') as $path) {
+        foreach (Config::get('view.paths') as $path) {
             if (is_dir($path . '/modules/' . $this->moduleNameLower)) {
                 $paths[] = $path . '/modules/' . $this->moduleNameLower;
             }

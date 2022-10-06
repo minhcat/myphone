@@ -231,6 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Helper' => App\Helpers\Common::class,
+        'ActionType' => App\Enums\ActionType::class,
     ],
 
 ];

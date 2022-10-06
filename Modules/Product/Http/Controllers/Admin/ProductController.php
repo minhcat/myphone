@@ -44,20 +44,23 @@ class ProductController extends BaseController
         return view('product::show');
     }
 
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $product = $this->productService->find($id);
+        $productLogs = $this->productService->getLogs($id, $request);
 
         return view('product::product.update', [
-            'form'      => 'update',
-            'product'   => $product,
+            'form'          => 'update',
+            'product'       => $product,
+            'productLogs'   => $productLogs,
+            'inputLogs'     => $request->all()
         ]);
     }
 
     public function update(Request $request, $id)
     {
         $this->productService->update($id, $request);
-        session()->flash('success', 'edit product successfully'); // todo: add name or id to message
+        session()->flash('success', 'edit product successfully'); // todo: add name or id to message, use lang
 
         return redirect()->route('products.index');
     }
@@ -65,7 +68,7 @@ class ProductController extends BaseController
     public function destroy($id)
     {
         $this->productService->delete($id);
-        session()->flash('success', 'delete product successfully'); // todo: add name or id to message
+        session()->flash('success', 'delete product successfully'); // todo: add name or id to message, use lang
 
         return redirect()->route('products.index');
     }

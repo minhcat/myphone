@@ -16,7 +16,7 @@ class CreateProductLogsTable extends Migration
         Schema::create('product_logs', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('product_id');
-            $table->string('log');
+            $table->text('log');
             $table->tinyInteger('type');
             $table->unsignedInteger('created_by');
             $table->timestamps();

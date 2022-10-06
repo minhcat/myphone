@@ -31,7 +31,7 @@
       @include('product::product.form', ['type' => 'update', 'product' => $product])
     </div>
     
-    @include('product::product.log')
+    @include('product::product.log', ['productLogs' => $productLogs])
   </section>
   <section class="col-lg-3">
     <!-- Box Categories -->
@@ -120,12 +120,10 @@
 <!-- <script src="../../bower_components/ckeditor/ckeditor.js"></script> -->
 <script src="{{ asset('Adminlte/vendor/ckeditor/ckeditor.js') }}"></script>
 <script>
-    $(function () {
+    $(document).ready(function(){
       //Select2
+      $('.select2').select2()
       $('.select2-nosearch').select2({
-        minimumResultsForSearch: -1
-      })
-      $('.select2').select2({
         minimumResultsForSearch: -1
       })
 
@@ -142,6 +140,14 @@
 
       //CKEditor
       CKEDITOR.replace('descriptionInput')
+
+      //Reset form log
+      $('.reset').on('click', function() {
+        $('#startDateInput').datepicker('setDate', null);
+        $('#endDateInput').datepicker('setDate', null);
+        $('#typeInput').val('').trigger('change')
+        $('#accountInput').val('').trigger('change')
+      })
     })
 </script>
 @endsection

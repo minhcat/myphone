@@ -3,7 +3,7 @@
 <!-- jQuery 3 -->
 <script src="{{ asset('Adminlte/vendor/jquery/dist/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
-<script src="{{ asset('Adminlte/vendor/jquery-ui/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('Adminlte/vendor/jquery-ui/jquery-ui.js') }}"></script>
 <script>
   $.widget.bridge('uibutton', $.ui.button);
 </script>
@@ -29,7 +29,7 @@
 <script src="{{ asset('Adminlte/vendor/moment/min/moment.min.js') }}"></script>
 <script src="{{ asset('Adminlte/vendor/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <!-- datepicker -->
-<script src="{{ asset('Adminlte/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('Adminlte/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('Adminlte/dist/js/adminlte.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

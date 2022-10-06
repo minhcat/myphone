@@ -43,4 +43,15 @@ class Common
     {
         return 'H:i:s d-m-Y';
     }
+
+    /**
+     * Descrease String
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function shortString($string, $number)
+    {
+        return substr($string, 0, $number) . '...';
+    }
 }
