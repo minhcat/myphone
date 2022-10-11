@@ -32,7 +32,7 @@
       </div>
       <div class="box-body p-5">
         <div class="box box-info collapsed-box">
-            <form action="{{ route('products.search') }}" method="GET">
+            <form action="{{ route('products.index') }}" method="GET">
             <div class="box-header with-border">
                 <h4 class="box-title text-4">Search</h4>
                 <div class="box-tools pull-right">
@@ -77,7 +77,7 @@
                     <div class="col-xs-3">
                         <div class="form-group">
                             <label for="showInput">Show</label>
-                            <select name="is_show" id="lockInput" class="form-control select2-nosearch" style="width: 100%;">
+                            <select name="is_show" id="showInput" class="form-control select2-nosearch" style="width: 100%;">
                                 <option value="" selected="selected">All</option>
                                 <option value="1">Show</option>
                                 <option value="0">Hide</option>
@@ -132,7 +132,7 @@
                     </div>
                     <div class="col-xs-12">
                         <button class="btn btn-info"><i class="fa fa-search"></i> Search</button>
-                        <button class="btn btn-default"><i class="fa fa-undo"></i> Reset</button>
+                        <button class="btn btn-default reset" type="button"><i class="fa fa-undo"></i> Reset</button>
                     </div>
                 </div>
             </div>
@@ -355,6 +355,18 @@
             } else {
                 $('#modal-lock h4.modal-title').text('Lock Product')
             }
+        })
+
+        //Reset form search
+        $('.reset').on('click', function() {
+            $('#nameInput').val('')
+            $('#startDateInput').datepicker('setDate', null);
+            $('#endDateInput').datepicker('setDate', null);
+            $('#brandInput').val('').trigger('change')
+            $('#categoryInput').val('').trigger('change')
+            $('#showInput').val('').trigger('change')
+            $('#lockInput').val('').trigger('change')
+            $('#createdByInput').val('').trigger('change')
         })
     })
 </script>

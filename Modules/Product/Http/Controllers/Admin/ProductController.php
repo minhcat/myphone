@@ -16,9 +16,14 @@ class ProductController extends BaseController
         $this->productService = $productService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $products = $this->productService->all();
+        $data = $request->only(['name', 'brand_id', 'category_id', 'is_show', 'is_lock', 'created_by', 'created_at']);
+        if (empty($data)) {
+            $products = $this->productService->all();
+        } else {
+            $products = $this->productService->search($request);
+        }
 
         return view('product::product.index', compact('products'));
     }
@@ -41,7 +46,9 @@ class ProductController extends BaseController
 
     public function show($id)
     {
-        return view('product::show');
+        $product = $this->productService->find($id);
+
+        return view('product::product.detail', compact('product'));
     }
 
     public function edit(Request $request, $id)

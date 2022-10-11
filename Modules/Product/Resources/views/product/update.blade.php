@@ -28,7 +28,27 @@
       <div class="box-header with-border px-3 py-5">
         <h3 class="box-title text-5">{{ $form == 'create' ? 'Create' : 'Edit' }}</h3>
       </div>
-      @include('product::product.form', ['type' => 'update', 'product' => $product])
+      @include('product::product.form', [
+        'type' => 'update',
+        'action' => route('products.update', $product->id),
+        'method' => 'POST',
+        'product' => $product,
+        'primaryButton' => [
+          'show' => true,
+          'type' => 'button',
+          'class' => 'btn-info',
+          'label' => 'Update',
+          'icon' => 'fa-save'
+        ],
+        'secondaryButton' => [
+          'show' => true,
+          'type' => 'link',
+          'link' => route('products.index'),
+          'class' => 'btn-default',
+          'label' => 'Back',
+          'icon' => 'fa-arrow-left'
+        ],
+      ])
     </div>
     
     @include('product::product.log', ['productLogs' => $productLogs])
