@@ -27,7 +27,7 @@
         </span>
       </a>
       <ul class="treeview-menu">
-        <li><a href="#">Product</a></li>
+        <li><a href="{{ route('products.index') }}">Product</a></li>
         <li><a href="#">Attribute</a></li>
         <li><a href="#">Brand</a></li>
       </ul>
