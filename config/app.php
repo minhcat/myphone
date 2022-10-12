@@ -232,6 +232,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Helper' => App\Helpers\Common::class,
         'ActionType' => App\Enums\ActionType::class,
+        'ShowState' => App\Enums\ShowState::class,
+        'LockState' => App\Enums\LockState::class,
     ],
 
 ];

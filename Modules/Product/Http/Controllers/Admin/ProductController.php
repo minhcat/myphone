@@ -21,18 +21,25 @@ class ProductController extends BaseController
         $data = $request->only(['name', 'brand_id', 'category_id', 'is_show', 'is_lock', 'created_by', 'created_at']);
         if (empty($data)) {
             $products = $this->productService->all();
+            $isSearch = false;
         } else {
             $products = $this->productService->search($request);
+            $isSearch = true;
         }
 
-        return view('product::product.index', compact('products'));
+        $users = config('dummy.users');
+        $brands = config('dummy.brands');
+        $categories = config('dummy.categories');
+
+        return view('product::product.index', compact('products', 'isSearch', 'users', 'brands', 'categories'));
     }
 
     public function create()
     {
         return view('product::product.create', [
-            'form'  => 'create',
+            'form'      => 'create',
             'product'   => null,
+            'brands'    => config('dummy.brands'),
         ]);
     }
 
@@ -55,12 +62,16 @@ class ProductController extends BaseController
     {
         $product = $this->productService->find($id);
         $productLogs = $this->productService->getLogs($id, $request);
+        $users = config('dummy.users');
+        $brands = config('dummy.brands');
 
         return view('product::product.update', [
             'form'          => 'update',
             'product'       => $product,
             'productLogs'   => $productLogs,
-            'inputLogs'     => $request->all()
+            'inputLogs'     => $request->all(),
+            'users'         => $users,
+            'brands'        => $brands
         ]);
     }
 

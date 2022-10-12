@@ -16,9 +16,9 @@
 
 @section('breakcumb')
 <ol class="breadcrumb">
-    <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-    <li><a href="#">Product</a></li>
-    <li class="active">Products</li>
+    <li><a href="{{ url('/admin') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="{{ route('products.index') }}">Product</a></li>
+    <li class="active">Index</li>
 </ol>
 @endsection
 
@@ -31,8 +31,8 @@
         <a class="btn btn-primary pull-right" href="{{ route('products.create') }}">New Product</a>
       </div>
       <div class="box-body p-5">
-        <div class="box box-info collapsed-box">
-            <form action="{{ route('products.index') }}" method="GET">
+        <div class="box box-info {{ $isSearch ? '' : 'collapsed-box' }}">
+            <form action="{{ route('products.index') }}" method="GET" autocomplete="off">
             <div class="box-header with-border">
                 <h4 class="box-title text-4">Search</h4>
                 <div class="box-tools pull-right">
@@ -51,12 +51,19 @@
                         <div class="form-group">
                             <label for="brandInput">Brand</label>
                             <select name="brand_id" id="brandInput" class="form-control select2-nosearch" style="width: 100%;">
-                                <!-- Todo: foreach check old input -->
+                                @if (request('brand_id') == null)
                                 <option value="" selected="selected">All</option>
-                                <option value="0">Apple</option>
-                                <option value="1">Samsung</option>
-                                <option value="2">Xiaomi</option>
-                                <option value="3">Oppo</option>
+                                @else
+                                <option value="">All</option>
+                                @endif
+
+                                @foreach ($brands as $brand)
+                                    @if (request('brand_id') !== null && request('brand_id') == $brand->id)
+                                    <option value="{{ $brand->id }}" selected="selected">{{ $brand->name }}</option>
+                                    @else
+                                    <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -64,13 +71,19 @@
                         <div class="form-group">
                             <label for="categoryInput">Category</label>
                             <select name="category_id" id="categoryInput" class="form-control select2-nosearch" style="width: 100%;">
+                                @if (request('category_id') == null)
                                 <option value="" selected="selected">All</option>
-                                <option value="0">Big</option>
-                                <option value="1">Small</option>
-                                <option value="2">New</option>
-                                <option value="3">Red</option>
-                                <option value="4">Blue</option>
-                                <option value="5">Black</option>
+                                @else
+                                <option value="">All</option>
+                                @endif
+
+                                @foreach ($categories as $category)
+                                    @if (request('category_id') !== null && request('category_id') == $category->id)
+                                    <option value="{{ $category->id }}" selected="selected">{{ $category->name }}</option>
+                                    @else
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -78,9 +91,19 @@
                         <div class="form-group">
                             <label for="showInput">Show</label>
                             <select name="is_show" id="showInput" class="form-control select2-nosearch" style="width: 100%;">
+                                @if (request('is_show') == null)
                                 <option value="" selected="selected">All</option>
-                                <option value="1">Show</option>
-                                <option value="0">Hide</option>
+                                @else
+                                <option value="">All</option>
+                                @endif
+
+                                @foreach (ShowState::list() as $state => $label)
+                                    @if (request('is_show') !== null && request('is_show') == $state)
+                                    <option value="{{ $state }}" selected="selected">{{ $label }}</option>
+                                    @else
+                                    <option value="{{ $state }}">{{ $label }}</option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -88,9 +111,19 @@
                         <div class="form-group">
                             <label for="lockInput">Lock</label>
                             <select name="is_lock" id="lockInput" class="form-control select2-nosearch" style="width: 100%;">
+                                @if (request('is_lock') == null)
                                 <option value="" selected="selected">All</option>
-                                <option value="0">Active</option>
-                                <option value="1">Lock</option>
+                                @else
+                                <option value="">All</option>
+                                @endif
+
+                                @foreach (LockState::list() as $state => $label)
+                                    @if (request('is_lock') !== null && request('is_lock') == $state)
+                                    <option value="{{ $state }}" selected="selected">{{ $label }}</option>
+                                    @else
+                                    <option value="{{ $state }}">{{ $label }}</option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -98,11 +131,19 @@
                         <div class="form-group">
                             <label for="createdByInput">Created by</label>
                             <select name="created_by" id="createdByInput" class="form-control select2-nosearch" style="width: 100%;">
+                                @if (request('created_by') == null)
                                 <option value="" selected="selected">All</option>
-                                <option value="0">Minh Cat</option>
-                                <option value="1">Long Geo</option>
-                                <option value="2">K'Gom</option>
-                                <option value="3">Pham Doan</option>
+                                @else
+                                <option value="">All</option>
+                                @endif
+
+                                @foreach ($users as $user)
+                                    @if (request('created_by') !== null && request('created_by') == $user->id)
+                                    <option value="{{ $user->id }}" selected="selected">{{ $user->name }}</option>
+                                    @else
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @endif
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -114,7 +155,7 @@
                                     <i class="fa fa-calendar"></i>
                                 </div>
                                 <!-- Todo: old input to start date -->
-                                <input type="text" class="form-control" id="startDateInput" name="created_at[]">
+                                <input type="text" class="form-control" id="startDateInput" name="created_at[]" value="{{ request('created_at')[0] }}">
                             </div>
                         </div>
                     </div>
@@ -126,7 +167,7 @@
                                     <i class="fa fa-calendar"></i>
                                 </div>
                                 <!-- Todo: old input to end date -->
-                                <input type="text" class="form-control" id="endDateInput" name="created_at[]">
+                                <input type="text" class="form-control" id="endDateInput" name="created_at[]" value="{{ request('created_at')[1] }}">
                             </div>
                         </div>
                     </div>
@@ -356,10 +397,12 @@
 
         //Date picker
         $('#startDateInput').datepicker({
-            autoclose: true
+            autoclose: true,
+            format: 'dd/mm/yyyy'
         })
         $('#endDateInput').datepicker({
-            autoclose: true
+            autoclose: true,
+            format: 'dd/mm/yyyy'
         })
 
         //Modal

@@ -20,10 +20,13 @@
   <div class="form-group">
     <label for="brandInput">Brand</label>
     <select class="form-control select2" name="brand_id" id="brandSelect" style="width: 100%;" {{ $disabled ? 'disabled' : '' }}>
-      <option value="1">Apple</option>
-      <option value="2">Samsung</option>
-      <option value="3">Xiaomi</option>
-      <option value="4">Realme</option>
+      @foreach ($brands as $brand)
+        @if (optional($product)->brand_id == $brand->id)
+        <option value="{{ $brand->id }}" selected="selected">{{ $brand->name }}</option>
+        @else
+        <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+        @endif
+      @endforeach
     </select>
   </div>
   <div class="form-group">

@@ -9,16 +9,24 @@
     <div class="box-body">
         <div class="row">
             <!-- Warning: $product maybe undefined -->
-            <form action="{{ route('products.edit', $product->id) }}" method="GET">
+            <form action="{{ route('products.edit', $product->id) }}" method="GET" autocomplete="off">
             <div class="col-xs-3">
                 <div class="form-group">
                     <label for="accountInput">Account</label>
                     <select name="created_by" id="accountInput" class="form-control select2" style="width: 100%;">
-                        <option value="" selected="selected">all</option>
-                        <option value="1">Minh Cat</option>
-                        <option value="2">Long Geo</option>
-                        <option value="3">K'Gom</option>
-                        <option value="4">Admin</option>
+                        @if (request('created_by') == null)
+                        <option value="" selected="selected">All</option>
+                        @else
+                        <option value="">All</option>
+                        @endif
+
+                        @foreach ($users as $user)
+                            @if (request('created_by') !== null && request('created_by') == $user->id)
+                            <option value="{{ $user->id }}" selected="selected">{{ $user->name }}</option>
+                            @else
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endif
+                        @endforeach
                     </select>
                 </div>
             </div>

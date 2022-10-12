@@ -21,6 +21,18 @@
 </style>
 @endsection
 
+@section('small-info')
+<small>Edit product</small>
+@endsection
+
+@section('breakcumb')
+<ol class="breadcrumb">
+    <li><a href="{{ url('/admin') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="{{ route('products.index') }}">Product</a></li>
+    <li class="active">Edit</li>
+</ol>
+@endsection
+
 @section('content')
 <div class="row">
   <section class="col-lg-9">
@@ -149,10 +161,12 @@
 
       //Date picker
       $('#startDateInput').datepicker({
-        autoclose: true
+        autoclose: true,
+        format: 'dd/mm/yyyy'
       })
       $('#endDateInput').datepicker({
-        autoclose: true
+        autoclose: true,
+        format: 'dd/mm/yyyy'
       })
 
       //Date range picker
