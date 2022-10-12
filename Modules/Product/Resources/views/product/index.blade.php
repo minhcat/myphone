@@ -150,7 +150,7 @@
                     <th>created at</th>
                     <th>updated at</th>
                     <th>status</th>
-                    <th style="width:183px">action</th>
+                    <th style="width:260px">action</th>
                 </tr>
                 @foreach ($products as $key => $product)
                 <tr>
@@ -203,6 +203,12 @@
                             @endif
                         </button>
                         <a
+                            href="{{ route('products.show', $product->id) }}"
+                            class="btn btn-info"
+                            type="button">
+                            <i class="fa fa-file-text"></i>
+                        </a>
+                        <a
                             href="{{ route('products.edit', $product->id) }}"
                             class="btn btn-primary"
                             type="button">
@@ -215,6 +221,14 @@
                             data-target="#modal-delete"
                             data-url="{{ route('products.destroy', $product->id) }}">
                             <i class="fa fa-trash"></i>
+                        </button>
+                        <button
+                            class="btn bg-maroon btn-ban"
+                            type="button"
+                            data-toggle="modal"
+                            data-target="#modal-ban"
+                            data-url="{{ route('products.ban', $product->id) }}">
+                            <i class="fa fa-ban"></i>
                         </button>
                     </td>
                 </tr>
@@ -248,6 +262,31 @@
             </div>
         </div>
         <!-- /Modal Delete -->
+
+        <!-- Modal Ban -->
+        <div class="modal modal-default fade" id="modal-ban">
+            <div class="modal-dialog">
+                <form action="" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Remove Product</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you want to remove this product</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Remove</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /Modal Ban -->
 
         <!-- Modal Show/Hide -->
         <div class="modal modal-default fade" id="modal-show">
@@ -327,6 +366,10 @@
         $('.btn-delete').click(function() {
             let url = $(this).data('url')
             $('#modal-delete form').attr('action', url)
+        })
+        $('.btn-ban').click(function() {
+            let url = $(this).data('url')
+            $('#modal-ban form').attr('action', url)
         })
         $('.btn-show').click(function() {
             // set url

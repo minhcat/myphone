@@ -25,10 +25,10 @@ class ResourceRegistrar extends OriginalRegistrar
      */
     protected function addResourceData($name, $base, $controller, $options)
     {
-        $uri = $this->getResourceUri($name).'/search';
+        $uri = $this->getResourceUri($name).'/{product}/ban';
 
-        $action = $this->getResourceAction($name, $controller, 'search', $options);
+        $action = $this->getResourceAction($name, $controller, 'ban', $options);
 
-        return $this->router->get($uri, $action);
+        return $this->router->delete($uri, $action);
     }
 }

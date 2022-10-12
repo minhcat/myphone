@@ -79,11 +79,11 @@ class ModelObserver
     /**
      * Handle the Model force deleted event
      * 
-     * @param Model $model
+     * @param LoggableInterface $model
      * @return void
      */
-    public function forceDeleted(Model $model)
+    public function forceDeleted(LoggableInterface $model)
     {
-        $model->where('id', $model->id)->delete();
+        $model->getLogInstance()->where($model->getLogIdColumn(), $model->id)->delete();
     }
 }

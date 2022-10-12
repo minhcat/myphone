@@ -67,6 +67,11 @@ class ProductService implements ProductServiceInterface
         return $this->productRepository->delete($id);
     }
 
+    public function forceDelete($id)
+    {
+        return $this->productRepository->forceDelete($id);
+    }
+
     /**
      * Make data array to create or update from request data
      * 

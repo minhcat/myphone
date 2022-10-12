@@ -80,10 +80,11 @@ class ProductController extends BaseController
         return redirect()->route('products.index');
     }
 
-    public function search(Request $request)
+    public function ban($id)
     {
-        $products = $this->productService->search($request);
+        $this->productService->forceDelete($id);
+        session()->flash('success', 'ban product successfully'); // todo: add name or id to message, use lang
 
-        return view('product::product.index', compact('products'));
+        return redirect()->route('products.index');
     }
 }

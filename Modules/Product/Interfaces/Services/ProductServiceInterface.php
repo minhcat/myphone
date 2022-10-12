@@ -12,5 +12,6 @@ interface ProductServiceInterface
     public function create(Request $request);
     public function update($id, Request $request);
     public function delete($id);
+    public function forceDelete($id);
     public function getLogs($id, Request $request = null);
 }

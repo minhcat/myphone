@@ -51,6 +51,11 @@ class ProductRepository extends FilterRepository implements ProductRepositoryInt
         return Product::find($id)->delete();
     }
 
+    public function forceDelete($id)
+    {
+        return Product::find($id)->forceDelete();
+    }
+
     private function convertDataRaw($products, int $descriptionLength = 10)
     {
         foreach ($products as &$product) {
