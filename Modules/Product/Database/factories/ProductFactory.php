@@ -1,7 +1,11 @@
 <?php
 namespace Modules\Product\Database\factories;
 
+use App\Helpers\Common;
+use Exception;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class ProductFactory extends Factory
 {
@@ -13,15 +17,93 @@ class ProductFactory extends Factory
     protected $model = \Modules\Product\Entities\Product::class;
 
     /**
+     * The data to generate random product.
+     * 
+     * @var array
+     */
+    protected $data = null;
+
+    /**
+     * Create a new factory instance.
+     *
+     * @param  int|null  $count
+     * @param  \Illuminate\Support\Collection|null  $states
+     * @param  \Illuminate\Support\Collection|null  $has
+     * @param  \Illuminate\Support\Collection|null  $for
+     * @param  \Illuminate\Support\Collection|null  $afterMaking
+     * @param  \Illuminate\Support\Collection|null  $afterCreating
+     * @param  string|null  $connection
+     * @return void
+     */
+    public function __construct(
+        $count = null,
+        ?Collection $states = null,
+        ?Collection $has = null,
+        ?Collection $for = null,
+        ?Collection $afterMaking = null,
+        ?Collection $afterCreating = null,
+        $connection = null
+    )
+    {
+        $this->data = config('dummy.factory.product');
+        parent::__construct($count, $states, $has, $for, $afterMaking, $afterCreating, $connection);
+    }
+
+    /**
      * Define the model's default state.
      *
      * @return array
      */
     public function definition()
     {
-        return [
-            //
-        ];
+        return $this->makeRandomProduct();
+    }
+
+    private function makeRandomProduct()
+    {
+        try {
+            $data = $this->data;
+
+            $rand1 = rand(0, count($data) - 1);
+            $brand = $data[$rand1];
+
+            $rand2 = rand(0, count($brand['products']) - 1);
+            $product = $brand['products'][$rand2];
+
+            $rand3 = rand(0, count($product['versions']) - 1);
+            $version = $product['versions'][$rand3];
+
+            $rand4 = rand($product['price'][0], $product['price'][1]);
+            $price = $rand4 * 1000000;
+
+            unset($this->data[$rand1]['products'][$rand2]['versions'][$rand3]);
+            $this->data[$rand1]['products'][$rand2]['versions'] = array_values($this->data[$rand1]['products'][$rand2]['versions']);
+            if ($this->data[$rand1]['products'][$rand2]['versions'] == null) {
+                unset($this->data[$rand1]['products'][$rand2]);
+                $this->data[$rand1]['products'] = array_values($this->data[$rand1]['products']);
+                if ($this->data[$rand1]['products'] == null) {
+                    unset($this->data[$rand1]);
+                    $this->data = array_values($this->data);
+                }
+            }
+
+            return [
+                'name'          => $name = $product['name'] . ' ' . $version,
+                'slug'          => Str::slug($name),
+                'price'         => $price,
+                'description'   => '<p>' . Common::lorem(60) . '</p>',
+                'brand_id'      => $brand['id']
+            ];
+        }
+        catch (Exception $e){
+            return [
+                'name'          => 'smartphone ' . $name = rand(1000, 9999),
+                'slug'          => Str::slug($name),
+                'price'         => 1000000,
+                'description'   => '<p>' . Common::lorem(60) . '</p>',
+                'brand_id'      => 10
+            ];
+        }
     }
 }
 
