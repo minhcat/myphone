@@ -7,14 +7,14 @@ use Modules\Product\Entities\Product;
 
 class ProductRepository extends FilterRepository implements ProductRepositoryInterface
 {
-    protected $attributes = ['name', 'brand_id', 'is_show', 'is_lock', 'created_by', 'created_at'];
+    protected $attributes = ['name', 'brand_id', 'is_show', 'is_lock', 'created_by', 'created_at', 'trashed'];
     protected $filters = [
         'name'          => 'like',
         'brand_id'      => '=',
         'is_show'       => '=',
         'is_lock'       => '=',
         'created_by'    => '=',
-        'created_at'    => 'date',
+        'created_at'    => 'daterange',
     ];
 
     public function all()
@@ -49,6 +49,11 @@ class ProductRepository extends FilterRepository implements ProductRepositoryInt
     public function delete($id)
     {
         return Product::find($id)->delete();
+    }
+
+    public function restore($id)
+    {
+        return Product::withTrashed()->find($id)->restore();
     }
 
     public function forceDelete($id)

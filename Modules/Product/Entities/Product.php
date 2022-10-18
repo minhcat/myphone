@@ -12,7 +12,7 @@ class Product extends Model implements LoggableInterface
 {
     use HasFactory, SoftDeletes, Loggable;
 
-    protected $fillable = ['name', 'slug', 'price', 'is_lock', 'is_show', 'description', 'brand_id', 'created_by'];
+    protected $fillable = ['name', 'slug', 'price', 'is_lock', 'is_show', 'description', 'brand_id', 'created_by', 'deleted_at'];
 
     protected $logInstance;
 

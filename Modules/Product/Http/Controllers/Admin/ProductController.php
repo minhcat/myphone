@@ -18,7 +18,7 @@ class ProductController extends BaseController
 
     public function index(Request $request)
     {
-        $data = $request->only(['name', 'brand_id', 'category_id', 'is_show', 'is_lock', 'created_by', 'created_at']);
+        $data = $request->only(['name', 'brand_id', 'category_id', 'is_show', 'is_lock', 'created_by', 'created_at', 'trashed']);
         if (empty($data)) {
             $products = $this->productService->all();
             $isSearch = false;
@@ -95,6 +95,14 @@ class ProductController extends BaseController
     {
         $this->productService->forceDelete($id);
         session()->flash('success', 'ban product successfully'); // todo: add name or id to message, use lang
+
+        return redirect()->route('products.index');
+    }
+
+    public function restore($id)
+    {
+        $this->productService->restore($id);
+        session()->flash('success', 'restore product successfully'); // todo: add name or id to message, use lang
 
         return redirect()->route('products.index');
     }

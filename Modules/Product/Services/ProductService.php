@@ -4,9 +4,9 @@ namespace Modules\Product\Services;
 
 use Modules\Product\Interfaces\Services\ProductServiceInterface;
 use Modules\Product\Interfaces\Repositories\ProductRepositoryInterface;
+use Modules\Product\Interfaces\Repositories\ProductLogRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Helpers\Common;
-use Modules\Product\Interfaces\Repositories\ProductLogRepositoryInterface;
 
 class ProductService implements ProductServiceInterface
 {
@@ -65,6 +65,11 @@ class ProductService implements ProductServiceInterface
     public function delete($id)
     {
         return $this->productRepository->delete($id);
+    }
+
+    public function restore($id)
+    {
+        return $this->productRepository->restore($id);
     }
 
     public function forceDelete($id)

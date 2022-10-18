@@ -11,7 +11,7 @@ class ResourceRegistrar extends OriginalRegistrar
      *
      * @var array
      */
-    protected $resourceDefaults = ['index', 'create', 'store', 'edit', 'update', 'show', 'destroy', 'data'];
+    protected $resourceDefaults = ['index', 'create', 'store', 'edit', 'update', 'show', 'destroy', 'restore', 'ban'];
 
 
     /**
@@ -23,7 +23,25 @@ class ResourceRegistrar extends OriginalRegistrar
      * @param  array   $options
      * @return \Illuminate\Routing\Route
      */
-    protected function addResourceData($name, $base, $controller, $options)
+    protected function addResourceRestore($name, $base, $controller, $options)
+    {
+        $uri = $this->getResourceUri($name).'/{product}/restore';
+
+        $action = $this->getResourceAction($name, $controller, 'restore', $options);
+
+        return $this->router->delete($uri, $action);
+    }
+
+    /**
+     * Add the data method for a resourceful route.
+     *
+     * @param  string  $name
+     * @param  string  $base
+     * @param  string  $controller
+     * @param  array   $options
+     * @return \Illuminate\Routing\Route
+     */
+    protected function addResourceBan($name, $base, $controller, $options)
     {
         $uri = $this->getResourceUri($name).'/{product}/ban';
 
