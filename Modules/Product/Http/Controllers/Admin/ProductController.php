@@ -39,7 +39,7 @@ class ProductController extends BaseController
         return view('product::product.create', [
             'form'      => 'create',
             'product'   => null,
-            'brands'    => config('dummy.brands'),
+            'brands'    => config('dummy.brands'),  // todo: use brands database
         ]);
     }
 
@@ -54,8 +54,9 @@ class ProductController extends BaseController
     public function show($id)
     {
         $product = $this->productService->find($id);
+        $brands = config('dummy.brands');
 
-        return view('product::product.detail', compact('product'));
+        return view('product::product.detail', compact('product', 'brands'));
     }
 
     public function edit(Request $request, $id)
