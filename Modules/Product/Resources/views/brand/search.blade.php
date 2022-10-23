@@ -1,12 +1,13 @@
 <div class="box box-info collapsed-box">
-    <form action="{{ route('brands.index') }}" method="GET" autocomplete="off">
     <div class="box-header with-border">
         <h4 class="box-title text-4">Search</h4>
         <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
         </div>
     </div>
     <div class="box-body">
+        <form action="{{ route('brands.index') }}" method="GET" autocomplete="off">
         <div class="row">
             <div class="col-xs-3">
                 <div class="form-group">
@@ -94,6 +95,6 @@
                 <button class="btn btn-default reset" type="button"><i class="fa fa-undo"></i> Reset</button>
             </div>
         </div>
+        </form>
     </div>
-    </form>
 </div>
