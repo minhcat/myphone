@@ -33,7 +33,10 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('product::brand.create');
+        return view('product::brand.create', [
+            'form'      => 'create',
+            'brand'    => null,
+        ]);
     }
 
     /**
@@ -43,7 +46,10 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->brandService->create($request);
+        session()->flash('success', 'create new brand successfully'); // todo: use locale translate languages
+
+        return redirect()->route('brands.index');
     }
 
     /**
@@ -61,9 +67,17 @@ class BrandController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        return view('product::brand.edit');
+        $brand = $this->brandService->find($id);
+        $brandLogs = null;
+
+        return view('product::brand.update', [
+            'form'          => 'update',
+            'brand'       => $brand,
+            'brandLogs'   => $brandLogs,
+            'inputLogs'     => $request->all(),
+        ]);
     }
 
     /**
@@ -74,7 +88,10 @@ class BrandController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->brandService->update($id, $request);
+        session()->flash('success', 'edit brand successfully'); // todo: add name or id to message, use lang
+
+        return redirect()->route('brands.index');
     }
 
     /**

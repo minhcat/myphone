@@ -80,7 +80,7 @@
                             <i class="fa fa-file-text"></i>
                         </a>
                         <a
-                            href=""
+                            href="{{ route('brands.edit', $brand->id) }}"
                             class="btn btn-primary"
                             type="button">
                             <i class="fa fa-edit"></i>

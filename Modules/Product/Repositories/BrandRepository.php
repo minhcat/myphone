@@ -25,7 +25,7 @@ class BrandRepository extends FilterRepository implements BrandRepositoryInterfa
 
     public function find($id)
     {
-        // return Product::findOrFail($id);
+        return Brand::findOrFail($id);
     }
 
     public function search(array $data)
@@ -37,21 +37,21 @@ class BrandRepository extends FilterRepository implements BrandRepositoryInterfa
 
     public function create(array $data)
     {
-        // return Product::create($data);
+        return Brand::create($data);
     }
 
     public function update($id, array $data)
     {
-        // return Product::find($id)->update($data);
+        return Brand::find($id)->update($data);
     }
 
     public function delete($id)
     {
-        // return Product::find($id)->delete();
+        return Brand::find($id)->delete();
     }
 
     public function forceDelete($id)
     {
-        // return Product::find($id)->forceDelete();
+        return Brand::find($id)->forceDelete();
     }
 }
