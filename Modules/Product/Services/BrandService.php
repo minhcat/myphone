@@ -4,16 +4,22 @@ namespace Modules\Product\Services;
 
 use App\Helpers\Common;
 use Illuminate\Http\Request;
+use Modules\Product\Interfaces\Repositories\BrandLogRepositoryInterface;
 use Modules\Product\Interfaces\Repositories\BrandRepositoryInterface;
 use Modules\Product\Interfaces\Services\BrandServiceInterface;
 
 class BrandService implements BrandServiceInterface
 {
     protected $brandRepository;
+    protected $brandLogRepository;
 
-    public function __construct(BrandRepositoryInterface $brandRepository)
+    public function __construct(
+        BrandRepositoryInterface $brandRepository,
+        BrandLogRepositoryInterface $brandLogRepository
+    )
     {
         $this->brandRepository = $brandRepository;
+        $this->brandLogRepository = $brandLogRepository;
     }
 
     public function all()
@@ -57,7 +63,13 @@ class BrandService implements BrandServiceInterface
 
     public function getLogs($id, Request $request = null)
     {
-
+        if ($request == null) { // todo : request if may be not run
+            return $this->brandLogRepository->getBySubjectId($id);
+        } else {
+            $data = $request->all();
+            $data['brand_id'] = $id;
+            return $this->brandLogRepository->getWithConditions($data);
+        }
     }
 
     /**

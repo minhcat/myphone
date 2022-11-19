@@ -63,7 +63,7 @@
       ])
     </div>
     
-    {{-- @include('product::product.log', ['productLogs' => $productLogs]) --}}
+    @include('product::brand.log', ['brandLogs' => $brandLogs])
   </section>
   <section class="col-lg-3">
     <!-- Box Categories -->

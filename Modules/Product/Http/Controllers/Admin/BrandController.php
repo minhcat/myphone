@@ -70,13 +70,15 @@ class BrandController extends Controller
     public function edit(Request $request, $id)
     {
         $brand = $this->brandService->find($id);
-        $brandLogs = null;
+        $brandLogs = $this->brandService->getLogs($id, $request);
+        $users = config('dummy.users');
 
         return view('product::brand.update', [
             'form'          => 'update',
-            'brand'       => $brand,
-            'brandLogs'   => $brandLogs,
+            'brand'         => $brand,
+            'brandLogs'     => $brandLogs,
             'inputLogs'     => $request->all(),
+            'users'         => $users,
         ]);
     }
 
