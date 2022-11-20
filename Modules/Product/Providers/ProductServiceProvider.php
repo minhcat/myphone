@@ -67,7 +67,7 @@ class ProductServiceProvider extends ServiceProvider
             ProductLogRepositoryInterface::class,
             ProductLogRepository::class,
         );
-        
+
         // Brand
         $this->app->bind(
             BrandServiceInterface::class,

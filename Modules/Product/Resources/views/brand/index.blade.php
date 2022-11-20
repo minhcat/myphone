@@ -51,8 +51,17 @@
                     <td>{{ $brand->created_at->format(Helper::formatDate()) }}</td>
                     <td>{{ $brand->updated_at->format(Helper::formatDate()) }}</td>
                     <td>
-                        <span class="badge bg-blue">active</span>
-                        <span class="badge bg-green">show</span>
+                        @if ($brand->is_lock)
+                            <span class="badge bg-orange">lock</span>
+                        @else
+                            <span class="badge bg-blue">active</span>
+                        @endif
+
+                        @if ($brand->is_show)
+                            <span class="badge bg-green">show</span>
+                        @else
+                            <span class="badge bg-red">hide</span>
+                        @endif
                     </td>
                     <td class="action">
                         <button
@@ -60,21 +69,29 @@
                             type="button"
                             data-toggle="modal"
                             data-target="#modal-show"
-                            data-value=""
-                            data-url="">
+                            data-value="{{ $brand->is_show ? '0' : '1' }}"
+                            data-url="{{ route('brands.update', $brand->id) }}">
+                            @if ($brand->is_show)
+                                <i class="fa fa-eye-slash"></i>
+                            @else
                                 <i class="fa fa-eye"></i>
+                            @endif
                         </button>
                         <button
                             class="btn btn-warning btn-lock"
                             type="button"
                             data-toggle="modal"
                             data-target="#modal-lock"
-                            data-value=""
-                            data-url="">
+                            data-value="{{ $brand->is_lock ? '0' : '1' }}"
+                            data-url="{{ route('brands.update', $brand->id) }}">
+                            @if ($brand->is_lock)
+                                <i class="fa fa-unlock"></i>
+                            @else
                                 <i class="fa fa-lock"></i>
+                            @endif
                         </button>
                         <a
-                            href=""
+                            href="{{ route('brands.show', $brand->id) }}"
                             class="btn btn-info"
                             type="button">
                             <i class="fa fa-file-text"></i>
@@ -90,7 +107,7 @@
                             type="button"
                             data-toggle="modal"
                             data-target="#modal-delete"
-                            data-url="">
+                            data-url="{{ route('brands.destroy', $brand->id) }}">
                             <i class="fa fa-trash"></i>
                         </button>
                         <button
@@ -98,7 +115,7 @@
                             type="button"
                             data-toggle="modal"
                             data-target="#modal-ban"
-                            data-url="">
+                            data-url="{{ route('brands.ban', $brand->id) }}">
                             <i class="fa fa-ban"></i>
                         </button>
                     </td>

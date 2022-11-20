@@ -103,6 +103,22 @@ class BrandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->brandService->delete($id);
+        session()->flash('success', 'delete brand successfully'); // todo: add name or id to message, use lang
+
+        return redirect()->route('brands.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * @param int $id
+     * @return Renderable
+     */
+    public function ban($id)
+    {
+        $this->brandService->forceDelete($id);
+        session()->flash('success', 'ban brand successfully'); // todo: add name or id to message, use lang
+
+        return redirect()->route('brands.index');
     }
 }
