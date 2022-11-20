@@ -5,13 +5,20 @@ namespace Modules\Product\Providers;
 use App\Observers\ModelObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Config;
-use Modules\Product\Entities\Product;
+use Modules\Product\Entities\Brand;
 use Modules\Product\Interfaces\Services\ProductServiceInterface;
-use Modules\Product\Interfaces\Repositories\ProductLogRepositoryInterface;
+use Modules\Product\Interfaces\Services\BrandServiceInterface;
 use Modules\Product\Interfaces\Repositories\ProductRepositoryInterface;
+use Modules\Product\Interfaces\Repositories\ProductLogRepositoryInterface;
+use Modules\Product\Interfaces\Repositories\BrandRepositoryInterface;
+use Modules\Product\Interfaces\Repositories\BrandLogRepositoryInterface;
 use Modules\Product\Services\ProductService;
+use Modules\Product\Services\BrandService;
 use Modules\Product\Repositories\ProductRepository;
 use Modules\Product\Repositories\ProductLogRepository;
+use Modules\Product\Repositories\BrandRepository;
+use Modules\Product\Repositories\BrandLogRepository;
+use Modules\Product\Entities\Product;
 
 class ProductServiceProvider extends ServiceProvider
 {
@@ -47,6 +54,7 @@ class ProductServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+        // Product
         $this->app->bind(
             ProductServiceInterface::class,
             ProductService::class
@@ -58,6 +66,20 @@ class ProductServiceProvider extends ServiceProvider
         $this->app->bind(
             ProductLogRepositoryInterface::class,
             ProductLogRepository::class,
+        );
+
+        // Brand
+        $this->app->bind(
+            BrandServiceInterface::class,
+            BrandService::class
+        );
+        $this->app->bind(
+            BrandRepositoryInterface::class,
+            BrandRepository::class,
+        );
+        $this->app->bind(
+            BrandLogRepositoryInterface::class,
+            BrandLogRepository::class,
         );
     }
 
@@ -118,6 +140,7 @@ class ProductServiceProvider extends ServiceProvider
     public function registerObservers()
     {
         Product::observe(ModelObserver::class);
+        Brand::observe(ModelObserver::class);
     }
 
     /**

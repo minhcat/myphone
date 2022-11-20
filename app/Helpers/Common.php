@@ -52,6 +52,9 @@ class Common
      */
     public static function shortString($string, $number)
     {
-        return substr($string, 0, $number) . '...';
+        if (strlen($string) > $number) {
+            return substr($string, 0, $number) . '...';
+        }
+        return $string;
     }
 }

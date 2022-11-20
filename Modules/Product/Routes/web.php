@@ -12,8 +12,10 @@
 */
 
 use Illuminate\Support\Facades\Route;
+use Modules\Product\Http\Controllers\Admin\BrandController;
 use Modules\Product\Http\Controllers\Admin\ProductController;
 
 Route::prefix('admin')->group(function() {
     Route::resource('products', ProductController::class);
+    Route::resource('brands', BrandController::class);
 });
