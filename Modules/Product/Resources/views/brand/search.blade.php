@@ -1,4 +1,4 @@
-<div class="box box-info collapsed-box">
+<div class="box box-info {{ $isSearch ? '' : 'collapsed-box' }}">
     <div class="box-header with-border">
         <h4 class="box-title text-4">Search</h4>
         <div class="box-tools pull-right">

@@ -30,9 +30,9 @@ class BrandRepository extends FilterRepository implements BrandRepositoryInterfa
 
     public function search(array $data)
     {
-        // $data = $this->refresh($data);
+        $data = $this->refresh($data);
 
-        // return $this->filter(Product::query(), $data)->paginate(5);
+        return $this->filter(Brand::query(), $data)->paginate(5);
     }
 
     public function create(array $data)

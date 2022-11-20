@@ -20,11 +20,18 @@ class BrandController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $brands = $this->brandService->all();
+        $data = $request->only(['name', 'is_show', 'is_lock', 'created_by', 'created_at']);
+        if (empty($data)) {
+            $brands = $this->brandService->all();
+            $isSearch = false;
+        } else {
+            $brands = $this->brandService->search($request);
+            $isSearch = true;
+        }
 
-        return view('product::brand.index', compact('brands'));
+        return view('product::brand.index', compact('brands', 'isSearch'));
     }
 
     /**
@@ -59,7 +66,9 @@ class BrandController extends Controller
      */
     public function show($id)
     {
-        return view('product::brand.show');
+        $brand = $this->brandService->find($id);
+
+        return view('product::brand.detail', compact('brand'));
     }
 
     /**
