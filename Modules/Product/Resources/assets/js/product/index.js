@@ -91,5 +91,6 @@ $(function () {
         $('#lockInput').val('').trigger('change')
         $('#createdByInput').val('').trigger('change')
         $('#reservation').val('');
+        $('#trashSelect').val('false').trigger('change');
     })
 })
