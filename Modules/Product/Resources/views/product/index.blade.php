@@ -8,7 +8,7 @@
 @endsection
 
 @section('small-info')
-<small>List of products</small>
+<small>List of products ({{ $products->total() }})</small>
 @endsection
 
 @section('breakcumb')

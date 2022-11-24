@@ -53,6 +53,7 @@
     @include('product::product.partial.log', ['productLogs' => $productLogs])
   </section>
   <section class="col-lg-3">
+    @include('product::product.partial.avatar')
     @include('product::product.partial.category')
     @include('product::product.partial.tag')
   </section>
