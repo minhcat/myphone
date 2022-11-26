@@ -27,7 +27,7 @@
         <h3 class="box-title text-5">Detail</h3>
       </div>
       <!-- todo: make method generate data form -->
-      @include('product::product.partial.form', [
+      @include('product::product.partials.form', [
         'type' => 'create',
         'action' => route('products.index'),
         'method' => 'GET',
@@ -50,8 +50,9 @@
     </div>
   </section>
   <section class="col-lg-3">
-    @include('product::product.partial.category')
-    @include('product::product.partial.tag')
+    @include('product::product.partials.image')
+    @include('product::product.partials.category')
+    @include('product::product.partials.tag')
   </section>
 
 </div>

@@ -17,7 +17,7 @@ class ProductRepository extends FilterRepository implements ProductRepositoryInt
         'created_at'    => 'daterange',
     ];
 
-    public function all()
+    public function all($paginable = true)
     {
         $products = Product::paginate(5);   // todo: set config to value paginate
         $products = $this->convertDataRaw($products, 20);

@@ -29,4 +29,9 @@ class Product extends Model implements LoggableInterface
     {
         return \Modules\Product\Database\factories\ProductFactory::new();
     }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
 }

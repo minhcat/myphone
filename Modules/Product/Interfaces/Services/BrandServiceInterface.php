@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 interface BrandServiceInterface
 {
-    public function all();
+    public function all($paginable = false);
     public function find($id);
     public function search(Request $request);
     public function create(Request $request);

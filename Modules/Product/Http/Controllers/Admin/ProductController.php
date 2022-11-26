@@ -6,14 +6,17 @@ use App\Http\Controllers\BaseController;
 use Illuminate\Http\Request;
 use Modules\Product\Interfaces\Services\ProductServiceInterface;
 use Modules\Product\Http\Requests\ProductRequest;
+use Modules\Product\Interfaces\Services\BrandServiceInterface;
 
 class ProductController extends BaseController
 {
     protected $productService;
+    protected $brandService;
 
-    public function __construct(ProductServiceInterface $productService)
+    public function __construct(ProductServiceInterface $productService, BrandServiceInterface $brandService)
     {
         $this->productService = $productService;
+        $this->brandService = $brandService;
     }
 
     public function index(Request $request)
@@ -28,7 +31,7 @@ class ProductController extends BaseController
         }
 
         $users = config('dummy.users');
-        $brands = config('dummy.brands');
+        $brands = $this->brandService->all(false);
         $categories = config('dummy.categories');
 
         return view('product::product.index', compact('products', 'isSearch', 'users', 'brands', 'categories'));
@@ -39,7 +42,7 @@ class ProductController extends BaseController
         return view('product::product.create', [
             'form'      => 'create',
             'product'   => null,
-            'brands'    => config('dummy.brands'),  // todo: use brands database
+            'brands'    => $this->brandService->all(false),
         ]);
     }
 
@@ -54,7 +57,7 @@ class ProductController extends BaseController
     public function show($id)
     {
         $product = $this->productService->find($id);
-        $brands = config('dummy.brands');
+        $brands = $this->brandService->all(false);
 
         return view('product::product.detail', compact('product', 'brands'));
     }
@@ -64,7 +67,7 @@ class ProductController extends BaseController
         $product = $this->productService->find($id);
         $productLogs = $this->productService->getLogs($id, $request);
         $users = config('dummy.users');
-        $brands = config('dummy.brands');
+        $brands = $this->brandService->all(false);
 
         return view('product::product.update', [
             'form'          => 'update',

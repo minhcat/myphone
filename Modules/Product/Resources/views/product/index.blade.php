@@ -28,7 +28,7 @@
         <a class="btn btn-primary pull-right" href="{{ route('products.create') }}">New Product</a>
       </div>
       <div class="box-body p-5">
-        @include('product::product.partial.search', ['isSearch' => $isSearch])
+        @include('product::product.partials.search', ['isSearch' => $isSearch])
         <table class="table table-bordered">
             <tbody>
                 <tr>
@@ -47,7 +47,7 @@
                 <tr>
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $product->name }}</td>
-                    <td>Apple</td>
+                    <td>{{ optional($product->brand)->name }}</td>
                     <td>Smartphone, modern</td>
                     <!-- <td>{{ $product->description }}</td> -->
                     <td>Minh Cat</td>
@@ -70,6 +70,7 @@
                         <button
                             class="btn btn-success btn-show"
                             type="button"
+                            {{ $product->deleted_at ? 'disabled' : '' }}
                             title="ẩn/hiển thị sản phẩm"
                             data-toggle="modal"
                             data-target="#modal-show"
@@ -84,6 +85,7 @@
                         <button
                             class="btn btn-warning btn-lock"
                             type="button"
+                            {{ $product->deleted_at ? 'disabled' : '' }}
                             title="khóa/mở khóa sản phẩm"
                             data-toggle="modal"
                             data-target="#modal-lock"
@@ -148,7 +150,7 @@
         </table>
         @include('Adminlte.layout.paginate', ['paginator' => $products])
 
-        @include('product::product.partial.modal')
+        @include('product::product.partials.modal')
       </div>
     </div>
   </section>

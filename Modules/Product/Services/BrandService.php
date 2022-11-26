@@ -22,9 +22,9 @@ class BrandService implements BrandServiceInterface
         $this->brandLogRepository = $brandLogRepository;
     }
 
-    public function all()
+    public function all($paginable = true)
     {
-        return $this->brandRepository->all();
+        return $this->brandRepository->all($paginable);
     }
 
     public function find($id)

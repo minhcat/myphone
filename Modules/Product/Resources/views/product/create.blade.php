@@ -26,7 +26,7 @@
       <div class="box-header with-border px-3 py-5">
         <h3 class="box-title text-5">{{ $form == 'create' ? 'Create' : 'Edit' }}</h3>
       </div>
-      @include('product::product.partial.form', [
+      @include('product::product.partials.form', [
         'type' => 'create',
         'action' => route('products.store'),
         'method' => 'POST',
@@ -51,9 +51,9 @@
     </div>
   </section>
   <section class="col-lg-3">
-    @include('product::product.partial.image')
-    @include('product::product.partial.category')
-    @include('product::product.partial.tag')
+    @include('product::product.partials.image')
+    @include('product::product.partials.category')
+    @include('product::product.partials.tag')
   </section>
 
 </div>

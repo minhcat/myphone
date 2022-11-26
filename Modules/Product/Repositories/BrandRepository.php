@@ -16,9 +16,13 @@ class BrandRepository extends FilterRepository implements BrandRepositoryInterfa
         'created_at'    => 'date',
     ];
 
-    public function all()
+    public function all($paginable = true)
     {
-        $brands = Brand::paginate(5);   // todo: set config to value paginate
+        if ($paginable) {
+            $brands = Brand::paginate(5);   // todo: set config to value paginate
+        } else {
+            $brands = Brand::all();
+        }
 
         return $brands;
     }
