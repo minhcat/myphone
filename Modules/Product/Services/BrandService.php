@@ -56,6 +56,11 @@ class BrandService implements BrandServiceInterface
         return $this->brandRepository->delete($id);
     }
 
+    public function restore($id)
+    {
+        return $this->brandRepository->restore($id);
+    }
+
     public function forceDelete($id)
     {
         return $this->brandRepository->forceDelete($id);

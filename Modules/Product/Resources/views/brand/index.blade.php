@@ -31,7 +31,7 @@
         <a class="btn btn-primary pull-right" href="{{ route('brands.create') }}">New Brand</a>
       </div>
       <div class="box-body p-5">
-        @include('product::brand.search')
+        @include('product::brand.partials.search', ['isSearch' => $isSearch])
         <table class="table table-bordered">
             <tbody>
                 <tr>
@@ -67,6 +67,7 @@
                         <button
                             class="btn btn-success btn-show"
                             type="button"
+                            {{ $brand->deleted_at ? 'disabled' : '' }}
                             data-toggle="modal"
                             data-target="#modal-show"
                             data-value="{{ $brand->is_show ? '0' : '1' }}"
@@ -80,6 +81,7 @@
                         <button
                             class="btn btn-warning btn-lock"
                             type="button"
+                            {{ $brand->deleted_at ? 'disabled' : '' }}
                             data-toggle="modal"
                             data-target="#modal-lock"
                             data-value="{{ $brand->is_lock ? '0' : '1' }}"
@@ -93,15 +95,20 @@
                         <a
                             href="{{ route('brands.show', $brand->id) }}"
                             class="btn btn-info"
+                            {{ $brand->deleted_at ? 'disabled' : '' }}
+                            title="xem chi tiết nhãn hiệu"
                             type="button">
                             <i class="fa fa-file-text"></i>
                         </a>
                         <a
                             href="{{ route('brands.edit', $brand->id) }}"
                             class="btn btn-primary"
+                            {{ $brand->deleted_at ? 'disabled' : '' }}
+                            title="thay đổi nhãn hiệu"
                             type="button">
                             <i class="fa fa-edit"></i>
                         </a>
+                        @if ($brand->deleted_at == null)
                         <button
                             class="btn btn-danger btn-delete"
                             type="button"
@@ -110,6 +117,18 @@
                             data-url="{{ route('brands.destroy', $brand->id) }}">
                             <i class="fa fa-trash"></i>
                         </button>
+                        @else
+                        <!-- todo: title lang -->
+                        <button
+                            class="btn btn-danger btn-restore"
+                            type="button"
+                            title="phục hồi nhãn hiệu"
+                            data-toggle="modal"
+                            data-target="#modal-restore"
+                            data-url="{{ route('brands.restore', $brand->id) }}">
+                            <i class="fa fa-undo"></i>
+                        </button>
+                        @endif
                         <button
                             class="btn bg-maroon btn-ban"
                             type="button"
@@ -125,109 +144,7 @@
         </table>
         @include('Adminlte.layout.paginate', ['paginator' => $brands])
 
-        <!-- Modal -->
-        <!-- Modal Delete -->
-        <div class="modal modal-default fade" id="modal-delete">
-            <div class="modal-dialog">
-                <form action="" method="POST">
-                    @method('DELETE')
-                    @csrf
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Delete Brand</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Do you want to delete this brand</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Delete</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- /Modal Delete -->
-
-        <!-- Modal Ban -->
-        <div class="modal modal-default fade" id="modal-ban">
-            <div class="modal-dialog">
-                <form action="" method="POST">
-                    @method('DELETE')
-                    @csrf
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Remove Brand</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Do you want to remove this brand</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Remove</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- /Modal Ban -->
-
-        <!-- Modal Show/Hide -->
-        <div class="modal modal-default fade" id="modal-show">
-            <div class="modal-dialog">
-                <form action="" method="POST">
-                    @method('PUT')
-                    @csrf
-                    <input type="hidden" name="is_show" id="show">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Show Brand</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Do you want to continue?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default">Cancel</button>
-                            <button type="submit" class="btn btn-primary">OK</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- /Modal Show/Hide -->
-
-        <!-- Modal Lock/Unlock -->
-        <div class="modal modal-default fade" id="modal-lock">
-            <div class="modal-dialog">
-                <form action="" method="POST">
-                    @method('PUT')
-                    @csrf
-                    <input type="hidden" name="is_lock" id="lock">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Lock Brand</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>Do you want to continue</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default">Cancel</button>
-                            <button type="submit" class="btn btn-primary">OK</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- /Modal Lock/Unlock -->
-        <!-- /Modal -->
+        @include('product::brand.partials.modal')
       </div>
     </div>
   </section>
@@ -235,72 +152,5 @@
 @endsection
 
 @section('script')
-<script>
-    $(function () {
-        //Select2
-        $('.select2-nosearch').select2({
-            minimumResultsForSearch: -1
-        })
-
-        //Date picker
-        $('#startDateInput').datepicker({
-            autoclose: true,
-            format: 'dd/mm/yyyy'
-        })
-        $('#endDateInput').datepicker({
-            autoclose: true,
-            format: 'dd/mm/yyyy'
-        })
-
-        //Modal
-        $('.btn-delete').click(function() {
-            let url = $(this).data('url')
-            $('#modal-delete form').attr('action', url)
-        })
-        $('.btn-ban').click(function() {
-            let url = $(this).data('url')
-            $('#modal-ban form').attr('action', url)
-        })
-        $('.btn-show').click(function() {
-            // set url
-            let url = $(this).data('url')
-            $('#modal-show form').attr('action', url)
-
-            // set data is_show
-            let value = $(this).data('value')
-            $('#modal-show input#show').val(value)
-            if (value == '0') {
-                $('#modal-show h4.modal-title').text('Hide Product')
-            } else {
-                $('#modal-show h4.modal-title').text('Show Product')
-            }
-        })
-        $('.btn-lock').click(function() {
-            // set url
-            let url = $(this).data('url')
-            $('#modal-lock form').attr('action', url)
-
-            // set data is_lock
-            let value = $(this).data('value')
-            $('#modal-lock input#lock').val(value)
-            if (value == '0') {
-                $('#modal-lock h4.modal-title').text('Unlock Product')
-            } else {
-                $('#modal-lock h4.modal-title').text('Lock Product')
-            }
-        })
-
-        //Reset form search
-        $('.reset').on('click', function() {
-            $('#nameInput').val('')
-            $('#startDateInput').datepicker('setDate', null);
-            $('#endDateInput').datepicker('setDate', null);
-            $('#brandInput').val('').trigger('change')
-            $('#categoryInput').val('').trigger('change')
-            $('#showInput').val('').trigger('change')
-            $('#lockInput').val('').trigger('change')
-            $('#createdByInput').val('').trigger('change')
-        })
-    })
-</script>
+<script src="{{ Module::asset('product:js/brand/index.js') }}"></script>
 @endsection
