@@ -1,0 +1,18 @@
+.tag {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background-color: #f2f2f2;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.tag .btn {
+    padding: 0 0.25rem;
+    border: none;
+}
+.tag .btn:hover, .tab .btn:focus {
+    background-color: unset;
+}
+
+.action .btn {
+    width: 4rem;
+}
