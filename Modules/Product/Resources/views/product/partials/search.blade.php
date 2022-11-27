@@ -126,14 +126,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-3" style="position: relative;">
                     <div class="form-group">
                         <label for="trashSelect">Deleted</label>
+                        <br/>
                         <!-- todo: name to use list config -->
-                        <select name="trashed" id="trashSelect" class="form-control select2-nosearch" style="width: 100%;">
-                            <option value="false">Untrash</option>
-                            <option value="true" {{ request('trashed') && request('trashed') == 'true' ? 'selected' : '' }}>Trash Only</option>
-                        </select>
+                        <input type="checkbox" name="trashed" data-toggle="toggle" data-height="33" data-width="66" {{ request('trashed') && request('trashed') == 'on' ? 'checked' : '' }}>
                     </div>
                 </div>
                 <div class="col-xs-12">

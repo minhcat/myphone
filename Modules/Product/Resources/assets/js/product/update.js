@@ -21,6 +21,9 @@ $(document).ready(function(){
     //CKEditor
     CKEDITOR.replace('descriptionInput')
 
+    //IMask
+    IMask(document.getElementById('priceInput'), {mask: Number, thousandsSeparator: ','})
+
     //Reset form log
     $('.reset').on('click', function() {
       $('#startDateInput').datepicker('setDate', null);

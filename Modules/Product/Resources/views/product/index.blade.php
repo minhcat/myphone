@@ -3,6 +3,9 @@
 @section('title-page', 'Products')
 
 @section('style')
+<!-- bootstrap toggle style -->
+<link rel="stylesheet" href="{{ asset('css/bootstrap4-toggle.min.css') }}">
+
 <!-- product common style -->
 <link rel="stylesheet" href="{{ Module::asset('product:css/product/common.css') }}">
 @endsection
@@ -158,6 +161,8 @@
 @endsection
 
 @section('script')
+<!-- Bootstrap toggle -->
+<script src="{{ asset('js/bootstrap4-toggle.min.js') }}"></script>
 <!-- Page script -->
 <script src="{{ Module::asset('product:js/product/index.js') }}"></script>
 @endsection

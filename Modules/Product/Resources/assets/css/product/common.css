@@ -16,3 +16,21 @@
 .action .btn {
     width: 4rem;
 }
+
+.toggle.btn-light {
+    background-color: #f2f2f2;
+}
+
+.toggle.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.toggle .toggle-group .toggle-off.btn-light {
+    background-color: #f2f2f2;
+}
+
+.toggle .toggle-group .toggle-off.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}

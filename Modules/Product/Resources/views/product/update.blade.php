@@ -64,6 +64,8 @@
 @section('script')
 <!-- CK Editor -->
 <script src="{{ asset('Adminlte/vendor/ckeditor/ckeditor.js') }}"></script>
+<!-- Imask -->
+<script src="{{ asset('js/imask.min.js') }}"></script>
 <!-- Page script -->
 <script src="{{ Module::asset('product:js/product/update.js') }}"></script>
 @endsection

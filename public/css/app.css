@@ -10,3 +10,7 @@
 input[type=file] {
     display: none;
 }
+
+.category-container .child {
+    padding-left: 1.5rem;
+}

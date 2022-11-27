@@ -13,6 +13,8 @@ $(function () {
     $('#endDateInput').datepicker({
       autoclose: true
     })
+    //IMask
+    IMask(document.getElementById('priceInput'), {mask: Number, thousandsSeparator: ','})
 
     //CKEditor
     CKEDITOR.replace('descriptionInput')

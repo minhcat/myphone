@@ -14,7 +14,7 @@ abstract class FilterRepository // todo: refactor to trait
         $data = Arr::only($data, $this->attributes);
         foreach ($data as $attribute => &$value) {
             if ($attribute == 'trashed') {
-                $value = $value === 'true' ? true : false;
+                $value = $value === 'on' ? true : false;
                 continue;
             } else if ($this->filters[$attribute] == 'date'
             && is_array($value)
