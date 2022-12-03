@@ -29,9 +29,23 @@
       @endforeach
     </select>
   </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label for="regularPriceInput">Regular Price</label>
+        <input type="text" class="form-control" id="regularPriceInput" name="price" value="{{ optional($product)->regular_price }}" {{ $disabled ? 'disabled' : '' }}>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <label for="salePriceInput">Sale Price</label>
+        <input type="text" class="form-control" id="salePriceInput" name="price" value="{{ optional($product)->sale_price }}" {{ $disabled ? 'disabled' : '' }}>
+      </div>
+    </div>
+  </div>
   <div class="form-group">
-    <label for="priceInput">Price</label>
-    <input type="text" class="form-control" id="priceInput" name="price" value="{{ optional($product)->price }}" {{ $disabled ? 'disabled' : '' }}>
+    <label for="stockQuantity">Stock Quantity</label>
+    <input type="number" class="form-control" id="stockQuantity" name="price" {{ $disabled ? 'disabled' : '' }} value="{{ optional($product)->stock_quantity }}">
   </div>
   <div class="form-group">
     <label for="descriptionInput">Description</label>

@@ -5,7 +5,6 @@
 @section('style')
 <!-- bootstrap toggle style -->
 <link rel="stylesheet" href="{{ asset('css/bootstrap4-toggle.min.css') }}">
-
 <!-- product common style -->
 <link rel="stylesheet" href="{{ Module::asset('product:css/product/common.css') }}">
 @endsection
@@ -66,13 +65,10 @@
 @section('script')
 <!-- CK Editor -->
 <script src="{{ asset('Adminlte/vendor/ckeditor/ckeditor.js') }}"></script>
-
 <!-- Imask -->
 <script src="{{ asset('js/imask.min.js') }}"></script>
-
 <!-- Bootstrap toggle -->
 <script src="{{ asset('js/bootstrap4-toggle.min.js') }}"></script>
-
 <!-- Page script -->
 <script src="{{ Module::asset('product:js/product/create.js') }}"></script>
 @endsection

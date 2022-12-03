@@ -14,7 +14,8 @@ $(function () {
       autoclose: true
     })
     //IMask
-    IMask(document.getElementById('priceInput'), {mask: Number, thousandsSeparator: ','})
+    IMask(document.getElementById('regularPriceInput'), {mask: Number, thousandsSeparator: ','})
+    IMask(document.getElementById('salePriceInput'), {mask: Number, thousandsSeparator: ','})
 
     //CKEditor
     CKEDITOR.replace('descriptionInput')
