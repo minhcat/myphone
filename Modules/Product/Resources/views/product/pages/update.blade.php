@@ -65,12 +65,11 @@
 @endsection
 
 @section('script')
-<!-- CK Editor -->
+<!-- Vendor Script -->
 <script src="{{ asset('Adminlte/vendor/ckeditor/ckeditor.js') }}"></script>
-<!-- Imask -->
 <script src="{{ asset('js/imask.min.js') }}"></script>
-<!-- Bootstrap toggle -->
 <script src="{{ asset('js/bootstrap4-toggle.min.js') }}"></script>
-<!-- Page script -->
-<script src="{{ Module::asset('product:js/product/update.js') }}"></script>
+<!-- Partials script -->
+<script src="{{ Module::asset('product:js/product/partials/form.js') }}"></script>
+<script src="{{ Module::asset('product:js/product/partials/log.js') }}"></script>
 @endsection

@@ -34,12 +34,12 @@ class ProductController extends BaseController
         $brands = $this->brandService->all(false);
         $categories = config('dummy.categories');
 
-        return view('product::product.index', compact('products', 'isSearch', 'users', 'brands', 'categories'));
+        return view('product::product.pages.index', compact('products', 'isSearch', 'users', 'brands', 'categories'));
     }
 
     public function create()
     {
-        return view('product::product.create', [
+        return view('product::product.pages.create', [
             'form'      => 'create',
             'product'   => null,
             'brands'    => $this->brandService->all(false),
@@ -59,7 +59,7 @@ class ProductController extends BaseController
         $product = $this->productService->find($id);
         $brands = $this->brandService->all(false);
 
-        return view('product::product.detail', compact('product', 'brands'));
+        return view('product::product.pages.detail', compact('product', 'brands'));
     }
 
     public function edit(Request $request, $id)
@@ -69,7 +69,7 @@ class ProductController extends BaseController
         $users = config('dummy.users');
         $brands = $this->brandService->all(false);
 
-        return view('product::product.update', [
+        return view('product::product.pages.update', [
             'form'          => 'update',
             'product'       => $product,
             'productLogs'   => $productLogs,

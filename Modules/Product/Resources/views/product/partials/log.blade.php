@@ -57,16 +57,16 @@
                     <label for="typeInput">Type</label>
                     <select name="type" id="typeInput" class="form-control select2-nosearch" style="width: 100%;">
                         @if (optional($inputLogs)['type'] === null)
-                        <option value="" selected="selected">all</option>
+                            <option value="" selected="selected">all</option>
                         @else
-                        <option value="">all</option>
+                            <option value="">all</option>
                         @endif
 
                         @foreach (ActionType::list() as $type => $label)
                             @if ($type == optional($inputLogs)['type'])
-                            <option value="{{ $type }}" selected="selected">{{ $label }}</option>
+                                <option value="{{ $type }}" selected="selected">{{ $label }}</option>
                             @else
-                            <option value="{{ $type }}">{{ $label }}</option>
+                                <option value="{{ $type }}">{{ $label }}</option>
                             @endif
                         @endforeach
                     </select>
@@ -79,7 +79,7 @@
             </form>
         </div>
         <table class="table table-bordered mt-5">
-            <tbody>
+            <thead>
                 <tr>
                     <th>id</th>
                     <th>account</th>
@@ -87,14 +87,16 @@
                     <th>log</th>
                     <th>type</th>
                 </tr>
+            </thead>
+            <tbody>
                 @foreach ($productLogs as $key => $log)
-                <tr>
-                    <td>{{ $key + 1 }}</td>
-                    <td>Minh Cat</td>
-                    <td>{{ $log->created_at->format(Helper::formatDate()) }}</td>
-                    <td>{{ Helper::shortString($log->log, 90) }}</td>
-                    <td>{{ ActionType::label($log->type) }}</td>
-                </tr>
+                    <tr>
+                        <td>{{ $key + 1 }}</td>
+                        <td>Minh Cat</td>
+                        <td>{{ $log->created_at->format(Helper::formatDate()) }}</td>
+                        <td>{{ Helper::shortString($log->log, 90) }}</td>
+                        <td>{{ ActionType::label($log->type) }}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>

@@ -18,13 +18,6 @@ $(document).ready(function(){
     //Date range picker
     $('#reservation').daterangepicker()
 
-    //CKEditor
-    CKEDITOR.replace('descriptionInput')
-
-    //IMask
-    IMask(document.getElementById('regularPriceInput'), {mask: Number, thousandsSeparator: ','})
-    IMask(document.getElementById('salePriceInput'), {mask: Number, thousandsSeparator: ','})
-
     //Reset form log
     $('.reset').on('click', function() {
       $('#startDateInput').datepicker('setDate', null);

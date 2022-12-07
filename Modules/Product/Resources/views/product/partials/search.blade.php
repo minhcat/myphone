@@ -19,9 +19,9 @@
                         <label for="brandInput">Brand</label>
                         <select name="brand_id" id="brandInput" class="form-control select2-nosearch" style="width: 100%;">
                             @if (request('brand_id') == null)
-                            <option value="" selected="selected">All</option>
+                                <option value="" selected="selected">All</option>
                             @else
-                            <option value="">All</option>
+                                <option value="">All</option>
                             @endif
 
                             @foreach ($brands as $brand)
@@ -39,16 +39,16 @@
                         <label for="categoryInput">Category</label>
                         <select name="category_id" id="categoryInput" class="form-control select2-nosearch" style="width: 100%;">
                             @if (request('category_id') == null)
-                            <option value="" selected="selected">All</option>
+                                <option value="" selected="selected">All</option>
                             @else
-                            <option value="">All</option>
+                                <option value="">All</option>
                             @endif
 
                             @foreach ($categories as $category)
                                 @if (request('category_id') !== null && request('category_id') == $category->id)
-                                <option value="{{ $category->id }}" selected="selected">{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}" selected="selected">{{ $category->name }}</option>
                                 @else
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -59,16 +59,16 @@
                         <label for="showInput">Show</label>
                         <select name="is_show" id="showInput" class="form-control select2-nosearch" style="width: 100%;">
                             @if (request('is_show') == null)
-                            <option value="" selected="selected">All</option>
+                                <option value="" selected="selected">All</option>
                             @else
-                            <option value="">All</option>
+                                <option value="">All</option>
                             @endif
 
                             @foreach (ShowState::list() as $state => $label)
                                 @if (request('is_show') !== null && request('is_show') == $state)
-                                <option value="{{ $state }}" selected="selected">{{ $label }}</option>
+                                    <option value="{{ $state }}" selected="selected">{{ $label }}</option>
                                 @else
-                                <option value="{{ $state }}">{{ $label }}</option>
+                                    <option value="{{ $state }}">{{ $label }}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -79,16 +79,16 @@
                         <label for="lockInput">Lock</label>
                         <select name="is_lock" id="lockInput" class="form-control select2-nosearch" style="width: 100%;">
                             @if (request('is_lock') == null)
-                            <option value="" selected="selected">All</option>
+                                <option value="" selected="selected">All</option>
                             @else
-                            <option value="">All</option>
+                                <option value="">All</option>
                             @endif
 
                             @foreach (LockState::list() as $state => $label)
                                 @if (request('is_lock') !== null && request('is_lock') == $state)
-                                <option value="{{ $state }}" selected="selected">{{ $label }}</option>
+                                    <option value="{{ $state }}" selected="selected">{{ $label }}</option>
                                 @else
-                                <option value="{{ $state }}">{{ $label }}</option>
+                                    <option value="{{ $state }}">{{ $label }}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -99,16 +99,16 @@
                         <label for="createdByInput">Created by</label>
                         <select name="created_by" id="createdByInput" class="form-control select2-nosearch" style="width: 100%;">
                             @if (request('created_by') == null)
-                            <option value="" selected="selected">All</option>
+                                <option value="" selected="selected">All</option>
                             @else
-                            <option value="">All</option>
+                                <option value="">All</option>
                             @endif
 
                             @foreach ($users as $user)
                                 @if (request('created_by') !== null && request('created_by') == $user->id)
-                                <option value="{{ $user->id }}" selected="selected">{{ $user->name }}</option>
+                                    <option value="{{ $user->id }}" selected="selected">{{ $user->name }}</option>
                                 @else
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endif
                             @endforeach
                         </select>
@@ -131,7 +131,7 @@
                         <label for="trashSelect">Deleted</label>
                         <br/>
                         <!-- todo: name to use list config -->
-                        <input type="checkbox" name="trashed" data-toggle="toggle" data-height="33" data-width="66" {{ request('trashed') && request('trashed') == 'on' ? 'checked' : '' }}>
+                        <input id="trashSelect" type="checkbox" name="trashed" data-toggle="toggle" data-height="33" data-width="66" {{ request('trashed') && request('trashed') == 'on' ? 'checked' : '' }}>
                     </div>
                 </div>
                 <div class="col-xs-12">

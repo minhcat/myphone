@@ -161,8 +161,9 @@
 @endsection
 
 @section('script')
-<!-- Bootstrap toggle -->
+<!-- Vendor script -->
 <script src="{{ asset('js/bootstrap4-toggle.min.js') }}"></script>
-<!-- Page script -->
-<script src="{{ Module::asset('product:js/product/index.js') }}"></script>
+<!-- Partials script -->
+<script src="{{ Module::asset('product:js/product/partials/search.js') }}"></script>
+<script src="{{ Module::asset('product:js/product/partials/modal.js') }}"></script>
 @endsection
