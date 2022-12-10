@@ -62,77 +62,225 @@ return [
     // data factory
     'factory' => [
         'product' => [
-            [
+            (object) [
                 'id'        => 1,
                 'name'      => 'apple',
+                'sku'       => 'AP',
                 'products'  => [
-                    [
+                    (object) [
                         'name'      => 'iphone',
+                        'sku'       => 'I-',
                         'price'     => [10, 20],
-                        'versions'  => ['10', '12', '13'],
+                        'versions'  => [
+                            (object) [
+                                'sku'   => 10,
+                                'name'  => '10',
+                            ],
+                            (object) [
+                                'sku'   => 12,
+                                'name'  => '12',
+                            ],
+                            (object) [
+                                'sku'   => 13,
+                                'name'  => '13',
+                            ]
+                        ],
                     ],
-                    [
+                    (object) [
                         'name'      => 'ipad',
+                        'sku'       => 'P-',
                         'price'     => [15, 30],
-                        'versions'  => ['Air', 'Pro', 'Gen'],
+                        'versions'  => [
+                            (object) [
+                                'sku'   => 20,
+                                'name'  => 'Air',
+                            ],
+                            (object) [
+                                'sku'   => 21,
+                                'name'  => 'Pro',
+                            ],
+                            (object) [
+                                'sku'   => 22,
+                                'name'  => 'Gen',
+                            ]
+                        ],
                     ],
-                    [
+                    (object) [
                         'name'      => 'macbook',
+                        'sku'       => 'M-',
                         'price'     => [20, 40],
-                        'versions'  => ['12', 'Air', 'Pro'],
+                        'versions'  => [
+                            (object) [
+                                'sku'   => 30,
+                                'name'  => '12',
+                            ],
+                            (object) [
+                                'sku'   => 32,
+                                'name'  => 'Air',
+                            ],
+                            (object) [
+                                'sku'   => 34,
+                                'name'  => 'Pro',
+                            ]
+                        ],
                     ],
                 ]
             ],
-            [
+            (object) [
                 'id'        => 2,
                 'name'      => 'samsung',
+                'sku'       => 'SS',
                 'products'  => [
-                    [
+                    (object) [
                         'name'      => 'galaxy',
+                        'sku'       => 'G-',
                         'price'     => [10, 20],
-                        'versions'  => ['A2', 'A3', 'S3', 'Z1'],
+                        'versions'  => [
+                            (object) [
+                                'sku'   => 10,
+                                'name'  => 'A2',
+                            ],
+                            (object) [
+                                'sku'   => 12,
+                                'name'  => 'A3',
+                            ],
+                            (object) [
+                                'sku'   => 14,
+                                'name'  => 'S3',
+                            ],
+                            (object) [
+                                'sku'   => 16,
+                                'name'  => 'Z1',
+                            ]
+                        ],
                     ],
-                    [
+                    (object) [
                         'name'      => 'galaxy tab',
+                        'sku'       => 'T-',
                         'price'     => [15, 30],
-                        'versions'  => ['A7', 'A8', 'S8', 'S7'],
+                        'versions'  => [
+                            (object) [
+                                'sku'   => 20,
+                                'name'  => 'A7',
+                            ],
+                            (object) [
+                                'sku'   => 22,
+                                'name'  => 'A8',
+                            ],
+                            (object) [
+                                'sku'   => 24,
+                                'name'  => 'S3',
+                            ],
+                            (object) [
+                                'sku'   => 26,
+                                'name'  => 'S7',
+                            ]
+                        ],
                     ],
                 ],
             ],
-            [
+            (object) [
                 'id'        => 3,
                 'name'      => 'xiaomi',
+                'sku'       => 'XM',
                 'products'  => [
-                    [
+                    (object) [
                         'name'      => 'xiaomi redmi',
+                        'sku'       => 'R-',
                         'price'     => [15, 25],
-                        'versions'  => ['10', '11', '12'],
+                        'versions'  => [
+                            (object) [
+                                'sku'   => 10,
+                                'name'  => '10',
+                            ],
+                            (object) [
+                                'sku'   => 11,
+                                'name'  => '11',
+                            ],
+                            (object) [
+                                'sku'   => 12,
+                                'name'  => '12',
+                            ]
+                        ],
                     ],
-                    [
+                    (object) [
                         'name'      => 'xiaomi',
+                        'sku'       => 'X-',
                         'price'     => [5, 15],
-                        'versions'  => ['11', '12'],
+                        'versions'  => [
+                            (object) [
+                                'sku'   => 21,
+                                'name'  => '11',
+                            ],
+                            (object) [
+                                'sku'   => 22,
+                                'name'  => '12',
+                            ]
+                        ],
                     ],
                 ],
             ],
-            [
+            (object) [
                 'id'        => 4,
                 'name'      => 'oppo',
+                'sku'       => 'OP',
                 'products'  => [
-                    [
+                    (object) [
                         'name'      => 'oppo',
+                        'sku'       => 'S-',
                         'price'     => [15, 25],
-                        'versions'  => ['a55', 'a56', 'a77', 'a95'],
+                        'versions'  => [
+                            (object) [
+                                'sku'   => 10,
+                                'name'  => 'a55',
+                            ],
+                            (object) [
+                                'sku'   => 12,
+                                'name'  => 'a56',
+                            ],
+                            (object) [
+                                'sku'   => 12,
+                                'name'  => 'a77',
+                            ],
+                            (object) [
+                                'sku'   => 15,
+                                'name'  => 'a95',
+                            ]
+                        ],
                     ],
-                    [
+                    (object) [
                         'name'      => 'oppo reno',
+                        'sku'       => 'R-',
                         'price'     => [5, 15],
-                        'versions'  => ['6', '7', '8'],
+                        'versions'  => [
+                            (object) [
+                                'sku'   => 16,
+                                'name'  => '6',
+                            ],
+                            (object) [
+                                'sku'   => 17,
+                                'name'  => '7',
+                            ],
+                            (object) [
+                                'sku'   => 18,
+                                'name'  => '8',
+                            ]
+                        ],
                     ],
-                    [
+                    (object) [
                         'name'      => 'oppo find',
+                        'sku'       => 'F-',
                         'price'     => [5, 15],
-                        'versions'  => ['X3', 'X5'],
+                        'versions'  => [
+                            (object) [
+                                'sku'   => 11,
+                                'name'  => 'X3',
+                            ],
+                            (object) [
+                                'sku'   => 12,
+                                'name'  => 'X5',
+                            ]
+                        ],
                     ],
                 ],
             ],

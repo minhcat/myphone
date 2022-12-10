@@ -61,49 +61,44 @@ class ProductFactory extends Factory
 
     private function makeRandomProduct()
     {
-        try {
-            $data = $this->data;
+        static $index;
+        $index ++;
 
-            $rand1 = rand(0, count($data) - 1);
-            $brand = $data[$rand1];
+        $data = $this->data;
 
-            $rand2 = rand(0, count($brand['products']) - 1);
-            $product = $brand['products'][$rand2];
+        $rand1 = rand(0, count($data) - 1);
+        $brand = $data[$rand1];
 
-            $rand3 = rand(0, count($product['versions']) - 1);
-            $version = $product['versions'][$rand3];
+        $rand2 = rand(0, count($brand->products) - 1);
+        $product = $brand->products[$rand2];
 
-            $rand4 = rand($product['price'][0], $product['price'][1]);
-            $price = $rand4 * 1000000;
+        $rand3 = rand(0, count($product->versions) - 1);
+        $version = $product->versions[$rand3];
 
-            unset($this->data[$rand1]['products'][$rand2]['versions'][$rand3]);
-            $this->data[$rand1]['products'][$rand2]['versions'] = array_values($this->data[$rand1]['products'][$rand2]['versions']);
-            if ($this->data[$rand1]['products'][$rand2]['versions'] == null) {
-                unset($this->data[$rand1]['products'][$rand2]);
-                $this->data[$rand1]['products'] = array_values($this->data[$rand1]['products']);
-                if ($this->data[$rand1]['products'] == null) {
-                    unset($this->data[$rand1]);
-                    $this->data = array_values($this->data);
-                }
+        $rand4 = rand($product->price[0], $product->price[1]);
+        $price = $rand4 * 1000000;
+
+        $sku = str_pad($index, 4, '0', STR_PAD_LEFT);
+
+        unset($this->data[$rand1]->products[$rand2]->versions[$rand3]);
+        $this->data[$rand1]->products[$rand2]->versions = array_values($this->data[$rand1]->products[$rand2]->versions);
+        if ($this->data[$rand1]->products[$rand2]->versions == null) {
+            unset($this->data[$rand1]->products[$rand2]);
+            $this->data[$rand1]->products = array_values($this->data[$rand1]->products);
+            if ($this->data[$rand1]->products == null) {
+                unset($this->data[$rand1]);
+                $this->data = array_values($this->data);
             }
+        }
 
-            return [
-                'name'          => $name = $product['name'] . ' ' . $version,
-                'slug'          => Str::slug($name),
-                'price'         => $price,
-                'description'   => '<p>' . Common::lorem(60) . '</p>',
-                'brand_id'      => $brand['id']
-            ];
-        }
-        catch (Exception $e){
-            return [
-                'name'          => 'smartphone ' . $name = rand(1000, 9999),
-                'slug'          => Str::slug($name),
-                'price'         => 1000000,
-                'description'   => '<p>' . Common::lorem(60) . '</p>',
-                'brand_id'      => 10
-            ];
-        }
+        return [
+            'name'          => $name = $product->name . ' ' . $version->name,
+            'slug'          => Str::slug($name),
+            'sku'           => $brand->sku . $product->sku . $version->sku . $sku,
+            'regular_price' => $price,
+            'description'   => $this->faker->paragraph(10),
+            'brand_id'      => $brand->id
+        ];
     }
 }
 

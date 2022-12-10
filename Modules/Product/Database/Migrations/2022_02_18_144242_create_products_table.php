@@ -19,8 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('slug');
             $table->string('sku')->unique();
             $table->unsignedInteger('regular_price');
-            $table->unsignedInteger('sale_price');
-            $table->unsignedInteger('stock_quantity');
+            $table->unsignedInteger('sale_price')->nullable();
+            $table->unsignedInteger('stock_quantity')->default(0);
             $table->text('description')->default('');
             $table->unsignedInteger('brand_id')->nullable();
             $table->boolean('is_lock')->default(true);
