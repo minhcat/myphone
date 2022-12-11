@@ -2,6 +2,7 @@
 
 namespace Modules\Product\Database\Seeders;
 
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Product\Entities\Brand;
@@ -17,12 +18,13 @@ class BrandTableSeeder extends Seeder
     {
         Model::unguard();
         Brand::truncate();
+        $faker = Factory::create();
 
         $data = [
             [
                 'name'          => 'apple',
                 'slug'          => 'apple',
-                'description'   => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
+                'description'   => $faker->paragraph(5),
                 'is_lock'       => false,
                 'is_show'       => true,
                 'created_by'    => 1,
@@ -32,7 +34,7 @@ class BrandTableSeeder extends Seeder
             [
                 'name'          => 'samsung',
                 'slug'          => 'samsung',
-                'description'   => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
+                'description'   => $faker->paragraph(5),
                 'is_lock'       => false,
                 'is_show'       => true,
                 'created_by'    => 1,
@@ -42,7 +44,7 @@ class BrandTableSeeder extends Seeder
             [
                 'name'          => 'xiaomi',
                 'slug'          => 'xiaomi',
-                'description'   => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
+                'description'   => $faker->paragraph(5),
                 'is_lock'       => false,
                 'is_show'       => true,
                 'created_by'    => 1,
@@ -52,7 +54,7 @@ class BrandTableSeeder extends Seeder
             [
                 'name'          => 'oppo',
                 'slug'          => 'oppo',
-                'description'   => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
+                'description'   => $faker->paragraph(5),
                 'is_lock'       => false,
                 'is_show'       => true,
                 'created_by'    => 1,
@@ -62,7 +64,7 @@ class BrandTableSeeder extends Seeder
             [
                 'name'          => 'vsmart',
                 'slug'          => 'vsmart',
-                'description'   => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
+                'description'   => $faker->paragraph(5),
                 'is_lock'       => false,
                 'is_show'       => true,
                 'created_by'    => 1,
