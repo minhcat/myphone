@@ -90,6 +90,16 @@
                     </div>
                 </div>
             </div>
+            <div class="col-xs-3">
+                <div class="form-group">
+                    <label for="trashSelect">Deleted</label>
+                    <!-- todo: name to use list config -->
+                    <select name="trashed" id="trashSelect" class="form-control select2-nosearch" style="width: 100%;">
+                        <option value="false">Untrash</option>
+                        <option value="true" {{ request('trashed') && request('trashed') == 'true' ? 'selected' : '' }}>Trash Only</option>
+                    </select>
+                </div>
+            </div>
             <div class="col-xs-12">
                 <button class="btn btn-info"><i class="fa fa-search"></i> Search</button>
                 <button class="btn btn-default reset" type="button"><i class="fa fa-undo"></i> Reset</button>

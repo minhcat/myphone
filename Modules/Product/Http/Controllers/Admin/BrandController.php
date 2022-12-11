@@ -22,7 +22,7 @@ class BrandController extends Controller
      */
     public function index(Request $request)
     {
-        $data = $request->only(['name', 'is_show', 'is_lock', 'created_by', 'created_at']);
+        $data = $request->only(['name', 'is_show', 'is_lock', 'created_by', 'created_at', 'trashed']);
         if (empty($data)) {
             $brands = $this->brandService->all();
             $isSearch = false;
@@ -127,6 +127,19 @@ class BrandController extends Controller
     {
         $this->brandService->forceDelete($id);
         session()->flash('success', 'ban brand successfully'); // todo: add name or id to message, use lang
+
+        return redirect()->route('brands.index');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * @param int $id
+     * @return Renderable
+     */
+    public function restore($id)
+    {
+        $this->brandService->restore($id);
+        session()->flash('success', 'restore brand successfully'); // todo: add name or id to message, use lang
 
         return redirect()->route('brands.index');
     }

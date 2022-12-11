@@ -7,7 +7,7 @@ use Modules\Product\Interfaces\Repositories\BrandRepositoryInterface;
 
 class BrandRepository extends FilterRepository implements BrandRepositoryInterface
 {
-    protected $attributes = ['name', 'is_show', 'is_lock', 'created_by', 'created_at'];
+    protected $attributes = ['name', 'is_show', 'is_lock', 'created_by', 'created_at', 'trashed'];
     protected $filters = [
         'name'          => 'like',
         'is_show'       => '=',
@@ -52,6 +52,11 @@ class BrandRepository extends FilterRepository implements BrandRepositoryInterfa
     public function delete($id)
     {
         return Brand::find($id)->delete();
+    }
+
+    public function restore($id)
+    {
+        return Brand::withTrashed()->find($id)->restore();
     }
 
     public function forceDelete($id)
