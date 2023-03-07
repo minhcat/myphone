@@ -1,4 +1,4 @@
-@extends('Adminlte.master')
+@extends('themes.adminlte.master')
 
 @section('title-page', 'Products')
 

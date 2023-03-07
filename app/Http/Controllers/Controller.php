@@ -13,6 +13,7 @@ class Controller extends BaseController
 
     public function callAction($method, $parameters)
     {
+        // dd($this, $method, $parameters);
         return call_user_func_array([$this, $method], $parameters);
     }
 }

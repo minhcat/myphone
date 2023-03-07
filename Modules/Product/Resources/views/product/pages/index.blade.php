@@ -1,4 +1,4 @@
-@extends('Adminlte.master')
+@extends('themes.adminlte.master')
 
 @section('title-page', 'Products')
 
@@ -151,7 +151,7 @@
                 @endforeach
             </tbody>
         </table>
-        @include('Adminlte.layout.paginate', ['paginator' => $products])
+        {{-- @include('Adminlte.layout.paginate', ['paginator' => $products]) --}}
 
         @include('product::product.partials.modal')
       </div>
