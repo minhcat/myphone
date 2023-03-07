@@ -54,9 +54,9 @@ class ProductController extends BaseController
         return redirect()->route('products.index');
     }
 
-    public function show($id)
+    public function show($product)
     {
-        $product = $this->productService->find($id);
+        $product = $this->productService->find($product);
         $brands = $this->brandService->all(false);
 
         return view('product::product.pages.detail', compact('product', 'brands'));
